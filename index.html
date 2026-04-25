@@ -2,391 +2,498 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IQE PRIME — Walker Contractors, LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{font-family:Arial,Helvetica,sans-serif!important;box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#000B1A;--panel:#001225;--card:#001830;--chi:#002040;--clo:#000F1E;
-  --gold:#C9A227;--gdim:rgba(201,162,39,.13);--gbd:rgba(201,162,39,.25);
-  --steel:#8B96B0;--slt:#C0CAE0;--white:#E8EDF8;
-  --green:#22C55E;--gdm:rgba(34,197,94,.12);--grd:rgba(34,197,94,.35);
-  --red:#EF4444;--rdm:rgba(239,68,68,.12);--rbd:rgba(239,68,68,.35);
-  --amber:#F59E0B;--adm:rgba(245,158,11,.12);--abd:rgba(245,158,11,.35);
-  --cyan:#38BDF8;--cdm:rgba(56,189,248,.12);--cbd:rgba(56,189,248,.35);
-  --violet:#A78BFA;--r:6px;--sw:198px;--bh:58px;
+  --bg:#06080F;--panel:#0B0F1A;--card:#0F1424;--cardHi:#131B30;
+  --bd:rgba(255,255,255,.06);--bdHi:rgba(255,255,255,.12);
+  --t1:#EDF0F7;--t2:#8B95AB;--t3:#4D5669;
+  --gold:#E9C46A;--goldDim:rgba(233,196,106,.12);--goldBd:rgba(233,196,106,.25);
+  --cyan:#00E5FF;--cyanDim:rgba(0,229,255,.10);--cyanBd:rgba(0,229,255,.25);
+  --green:#34D399;--greenDim:rgba(52,211,153,.10);--greenBd:rgba(52,211,153,.25);
+  --red:#F87171;--redDim:rgba(248,113,113,.10);
+  --amber:#F59E0B;--amberDim:rgba(245,158,11,.10);
+  --violet:#A78BFA;--violetDim:rgba(167,139,250,.10);
 }
-body{background:var(--bg);color:var(--white);min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
-.hdr{background:var(--panel);border-bottom:2px solid var(--gbd);padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;flex-shrink:0}
-.wm{font-size:17px;font-weight:900;color:var(--gold);letter-spacing:.08em;line-height:1}
-.wmsub{font-size:8px;color:var(--steel);letter-spacing:.04em;margin-top:2px}
-.hdiv{width:1px;height:26px;background:var(--gbd);flex-shrink:0}
-.hinfo{font-size:9px;color:var(--steel);line-height:1.5}
-.hinfo b{color:var(--slt)}
-.hbdgs{display:flex;gap:5px;margin-left:auto;flex-wrap:wrap}
-.hb{padding:3px 8px;font-size:8px;font-weight:700;border-radius:3px;white-space:nowrap}
-.layout{display:flex;flex:1;overflow:hidden}
-.sb{width:var(--sw);background:var(--panel);border-right:1px solid var(--gbd);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
-.sb-sec-lbl{font-size:8px;color:var(--steel);text-transform:uppercase;letter-spacing:.12em;padding:9px 14px 4px;border-top:1px solid rgba(255,255,255,.04)}
-.nb{display:flex;align-items:center;gap:9px;padding:9px 14px;border:none;cursor:pointer;background:transparent;border-left:3px solid transparent;text-align:left;width:100%;min-height:46px;transition:background .1s}
-.nb:hover{background:rgba(255,255,255,.04)}
-.nb.active{background:var(--gdim);border-left-color:var(--gold)}
-.nb-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
-.nb-lbl{font-size:11px;font-weight:700;color:var(--steel)}
-.nb.active .nb-lbl{color:var(--gold)}
-.nb-desc{font-size:9px;color:var(--steel);opacity:.7;margin-top:1px}
-.nb.active .nb-desc{color:var(--gold);opacity:.8}
-.nb-dot{width:6px;height:6px;border-radius:50%;margin-left:auto;flex-shrink:0}
-.sb-foot{margin-top:auto;padding:10px 14px;border-top:1px solid var(--gbd);font-size:8px;color:var(--steel);line-height:1.6}
-.main{flex:1;overflow-y:auto;padding:15px}
-.bot-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--panel);border-top:2px solid var(--gbd);height:var(--bh);z-index:100}
-.bn-inner{display:grid;grid-template-columns:repeat(7,1fr);height:100%}
-.bn-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:none;background:transparent;cursor:pointer;padding:4px;border-top:3px solid transparent}
-.bn-btn.active{background:var(--gdim);border-top-color:var(--gold)}
-.bn-icon{font-size:15px}
-.bn-lbl{font-size:8px;font-weight:700;color:var(--steel)}
-.bn-btn.active .bn-lbl{color:var(--gold)}
-.card{background:var(--card);border-radius:var(--r);padding:13px;margin-bottom:9px}
-.card-g{border-left:3px solid var(--green)}.card-a{border-left:3px solid var(--amber)}.card-r{border-left:3px solid var(--red)}.card-gold{border:1px solid var(--gbd)}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:13px}
-.kpi{background:var(--card);border-radius:var(--r);padding:11px 12px;text-align:center}
-.kpi-n{font-size:22px;font-weight:900;line-height:1;margin-bottom:4px}
-.kpi-l{font-size:9px;color:var(--steel);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.kpi-s{font-size:8px;color:var(--steel);margin-top:3px}
-.sh{margin-bottom:13px;border-bottom:1px solid var(--gbd);padding-bottom:9px}
-.sh h1{font-size:15px;font-weight:900;color:var(--white)}.sh p{font-size:10px;color:var(--steel);margin-top:3px}
-.tag{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.03em;white-space:nowrap}
-.tg{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.45);color:var(--green)}
-.tr{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.45);color:var(--red)}
-.ta{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.45);color:var(--amber)}
-.tc{background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.45);color:var(--cyan)}
-.tv{background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.45);color:var(--violet)}
-.ts{background:rgba(139,150,176,.1);border:1px solid rgba(139,150,176,.3);color:var(--steel)}
-.opp{background:var(--card);border-radius:var(--r);padding:11px 13px;margin-bottom:7px;border-left:4px solid}
-.opp-title{font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;line-height:1.3}
-.opp-meta{font-size:9px;color:var(--steel);margin-top:3px}
-.score-bar{height:4px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.07);margin:4px 0}
-.stabs{display:flex;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:13px}
-.stb{padding:7px 14px;border:none;background:transparent;cursor:pointer;font-size:10px;font-weight:700;color:var(--steel);border-bottom:2px solid transparent;min-height:36px}
-.stb.a{color:var(--gold);border-bottom-color:var(--gold)}
-.pipe-wrap{overflow-x:auto;padding-bottom:5px}
-.pipe-row{display:flex;gap:7px;min-width:680px}
-.stage{flex:1;min-width:105px}
-.stg-hdr{border-radius:var(--r) var(--r) 0 0;padding:7px 9px;border-top:3px solid;background:var(--card);margin-bottom:4px}
-.stg-l{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.stg-v{font-size:14px;font-weight:900;color:var(--white);margin-top:2px}
-.stg-c{font-size:8px;color:var(--steel);margin-top:1px}
-.deal{background:var(--chi);border-radius:var(--r);padding:7px 8px;margin-bottom:4px}
-.deal-t{font-size:9px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:3px}
-.deal-m{display:flex;justify-content:space-between;font-size:8px;color:var(--steel)}
-.ct{width:100%;border-collapse:collapse}
-.ct th{font-size:8px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:.08em;padding:6px 9px;text-align:right;border-bottom:1px solid rgba(255,255,255,.08)}
-.ct th:first-child{text-align:left}.ct td{padding:6px 9px;font-size:10px;text-align:right;border-bottom:1px solid rgba(255,255,255,.04)}
-.ct td:first-child{text-align:left;font-weight:700;color:var(--white)}.ct tr:nth-child(even) td{background:rgba(0,0,0,.12)}
-.ct .tr-total td{border-top:2px solid var(--gbd);font-weight:900;font-size:12px}
-.cstage{display:flex;gap:9px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);background:var(--card);margin-bottom:5px;border-left:3px solid}
-.csnum{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;border:2px solid}
-.csn{font-size:11px;font-weight:700;color:var(--white);line-height:1.3}.csa{font-size:9px;font-weight:700;margin-top:3px}
-.action{display:flex;gap:9px;align-items:center;padding:11px 12px;border-radius:var(--r);background:var(--card);margin-bottom:7px;border-left:4px solid;cursor:pointer;min-height:44px;transition:background .12s}
-.action:hover{background:var(--chi)}.action.done{opacity:.5}
-.chk{width:25px;height:25px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:900;transition:all .2s}
-.abt{flex:1}.at{font-size:11px;font-weight:700;color:var(--white);margin-bottom:3px}.action.done .at{text-decoration:line-through;color:var(--steel)}
-.aw{font-size:9px;color:var(--steel);line-height:1.4}.atm{font-size:8px;color:var(--steel);flex-shrink:0}
-.agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.acard{background:var(--card);border-radius:var(--r);padding:11px;text-align:center}
-.adot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);display:inline-block;margin-bottom:4px}
-.aname{font-size:10px;font-weight:900;letter-spacing:.06em;margin-bottom:3px}.ascore{font-size:22px;font-weight:900;line-height:1}
-.anote{font-size:8px;color:var(--steel);margin-top:4px;line-height:1.4}
-.scgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.scc{background:var(--card);border-radius:var(--r);padding:10px 12px}
-.sct{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.scn{font-size:10px;font-weight:700;color:var(--white)}.scv{font-size:18px;font-weight:900;line-height:1}
-.scnote{font-size:8px;color:var(--steel);margin-top:3px}
-.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));gap:3px}
-.stile{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:6px 5px;cursor:pointer;position:relative;text-align:center;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:border-color .15s}
-.stile:hover{border-color:var(--gbd);background:var(--chi)}.stile.sel{border-color:var(--gold);background:var(--gdim)}
-.stile.hp{border-color:rgba(34,197,94,.55)}.stile.gap{border-color:rgba(245,158,11,.35)}.stile.dark{opacity:.4}
-.hpb{position:absolute;top:2px;right:2px;font-size:5px;font-weight:900;padding:1px 3px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.5);color:var(--green);border-radius:1px}
-.lgb{position:absolute;top:2px;right:2px;font-size:5px;font-weight:900;padding:1px 3px;background:var(--adm);border:1px solid rgba(245,158,11,.4);color:var(--amber);border-radius:1px}
-.sc2{font-size:11px;font-weight:900}.sopp{font-size:8px;font-weight:700;margin-top:1px}.sval{font-size:7px;color:var(--steel);margin-top:1px}
-.reg-lbl{font-size:7px;color:var(--steel);text-transform:uppercase;letter-spacing:.1em;grid-column:1/-1;padding:5px 2px 2px;border-top:1px solid rgba(255,255,255,.06);margin-top:3px}
-.ibox{padding:10px 12px;border-radius:var(--r);font-size:10px;line-height:1.6;margin-bottom:10px}
-.pb-wrap{display:flex;align-items:center;gap:7px;margin-bottom:8px}.pb{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
-.pb-fill{height:100%;border-radius:99px}.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-@media(max-width:700px){
-  .sb{display:none}.bot-nav{display:block}.main{padding:11px 10px;padding-bottom:70px}
-  .kpi-row{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.agrid{grid-template-columns:1fr 1fr}
-  .scgrid{grid-template-columns:1fr}.hbdgs{display:none}.hdiv{display:none}
-}
-@media(max-width:400px){.sgrid{grid-template-columns:repeat(auto-fill,minmax(50px,1fr))}.kpi-n{font-size:18px}}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--t1);height:100vh;overflow:hidden;display:flex}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:99px}
+
+/* AMBIENT */
+.ambient{position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 70% -10%,var(--cyanDim),transparent 60%),radial-gradient(700px 400px at 10% 110%,var(--goldDim),transparent 60%);z-index:0}
+
+/* SIDEBAR */
+.sb{width:220px;background:rgba(8,11,20,.85);backdrop-filter:blur(12px);border-right:1px solid var(--bd);padding:16px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex-shrink:0;z-index:1}
+.sb-logo{padding:8px 12px 20px;display:flex;align-items:center;gap:10px}
+.sb-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#8B6914);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff}
+.sb-title{font-weight:800;font-size:15px;color:var(--t1);letter-spacing:.02em}
+.sb-title span{color:var(--gold)}
+.sb-ver{font-size:8px;color:var(--t3);letter-spacing:.14em;text-transform:uppercase;margin-top:1px}
+.sb-group{font-size:9px;font-weight:700;color:var(--t3);letter-spacing:.16em;padding:12px 12px 4px;text-transform:uppercase}
+.sb-btn{display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:var(--t2);font-size:12px;font-family:'Outfit',sans-serif;font-weight:400;text-align:left;transition:all .15s}
+.sb-btn:hover{background:rgba(255,255,255,.03);color:var(--t1)}
+.sb-btn.active{background:var(--cyanDim);color:var(--cyan);font-weight:600}
+.sb-dot{width:6px;height:6px;border-radius:99px;margin-left:auto}
+.sb-foot{margin-top:auto;padding:16px 12px 8px;font-size:9px;color:var(--t3);line-height:1.6;border-top:1px solid var(--bd)}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;padding:20px 24px 40px;z-index:1}
+.tab{display:none}.tab.active{display:block}
+
+/* COMPONENTS */
+.badge{font-size:9px;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:4px;text-transform:uppercase;white-space:nowrap;display:inline-block}
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:12px 14px;flex:1;min-width:130px}
+.kpi-val{font-size:22px;font-weight:800}
+.kpi-lbl{font-size:10px;color:var(--t2);margin-top:2px}
+.kpi-sub{font-size:9px;color:var(--t3);margin-top:3px}
+.score{font-size:18px;font-weight:800}
+.score-lbl{font-size:8px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-left:3px}
+
+/* OPP ROW */
+.opp{display:grid;grid-template-columns:minmax(0,1fr) 70px 80px 110px 65px;gap:8px;align-items:center;padding:10px 14px;background:var(--card);border:1px solid var(--bd);border-radius:8px;transition:border-color .15s;cursor:pointer}
+.opp:hover{border-color:var(--cyan)}
+.opp-title{font-size:12px;color:var(--t1);font-weight:500;line-height:1.3}
+.opp-meta{font-size:10px;color:var(--t3);margin-top:3px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.opp-val{font-size:13px;font-weight:700;color:var(--t1);text-align:right}
+.opp-dl{font-size:10px;text-align:right}
+
+/* FEED */
+.feed{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;max-height:420px;overflow-y:auto}
+.feed-item{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
+.feed-item:last-child{border-bottom:none}
+.feed-agent{font-size:9px;font-weight:700;min-width:48px}
+.feed-text{font-size:10px;color:var(--t2);flex:1;line-height:1.4}
+.feed-time{font-size:9px;color:var(--t3);white-space:nowrap}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.card-section{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:16px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:.08em;margin-bottom:12px}
+.col-header{display:grid;grid-template-columns:minmax(0,1fr) 70px 80px 110px 65px;gap:8px;padding:0 14px;margin-bottom:6px}
+.col-header span{font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+
+/* AGENT CARD */
+.agent-card{background:var(--card);border-radius:8px;padding:12px 14px}
+.agent-hdr{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.agent-dot{width:7px;height:7px;border-radius:99px}
+.agent-name{font-size:12px;font-weight:700}
+.agent-score{font-size:14px;font-weight:800;margin-left:auto}
+
+/* COMPLIANCE ROW */
+.comp-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--card);border:1px solid var(--bd);border-radius:8px}
+.comp-dot{width:8px;height:8px;border-radius:99px;flex-shrink:0}
+.comp-name{font-size:12px;color:var(--t1);font-weight:500;flex:1}
+.comp-exp{font-size:10px;min-width:80px;text-align:right}
+
+/* BAR */
+.bar{height:4px;background:var(--bd);border-radius:99px;overflow:hidden;margin-top:6px}
+.bar-fill{height:100%;border-radius:99px}
+
+/* ALERT */
+.alert{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;margin-bottom:6px}
+
+/* FORECAST CARD */
+.fc{flex:1;padding:12px 14px;border-radius:8px}
+
+/* FILTER BTNS */
+.filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.fbtn{padding:5px 12px;border-radius:6px;border:1px solid var(--bd);background:transparent;color:var(--t3);font-size:10px;cursor:pointer;font-family:'Outfit',sans-serif}
+.fbtn.active{background:var(--cyanDim);color:var(--cyan);border-color:var(--cyanBd)}
+
+/* BID ROW */
+.bid-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--bd);border-radius:8px;margin-bottom:6px}
+
+/* CATEGORY PILLS */
+.pills{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.pill{padding:6px 12px;border-radius:6px;font-size:10px;font-weight:600}
+
+/* PROGRESS */
+.prog{height:4px;background:var(--bd);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;border-radius:99px}
+
+/* CO ROW */
+.co-row{display:flex;align-items:center;gap:8px;padding:6px 0}
+.co-avatar{width:28px;height:28px;border-radius:99px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+
+@media(max-width:900px){.sb{display:none}.main{padding:12px}}
 </style>
 </head>
 <body>
+<div class="ambient"></div>
 
-<div class="hdr">
-  <svg width="34" height="34" viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="#00143C" stroke="#C9A227" stroke-width="2.5"/><path d="M60 28Q72 42 72 58Q60 55 48 58Q48 42 60 28Z" fill="#C9A227" opacity=".35"/><ellipse cx="60" cy="58" rx="24" ry="9" fill="none" stroke="#C9A227" stroke-width="1.5"/><line x1="60" y1="28" x2="60" y2="18" stroke="#C9A227" stroke-width="1.5"/><circle cx="60" cy="15" r="3" fill="#C9A227"/><rect x="22" y="84" width="76" height="4" rx="1.5" fill="#C9A227" opacity=".5"/><rect x="26" y="70" width="68" height="15" rx="2" fill="none" stroke="#C9A227" stroke-width="1" opacity=".4"/><line x1="36" y1="70" x2="36" y2="84" stroke="#C9A227" stroke-width="1" opacity=".5"/><line x1="48" y1="70" x2="48" y2="84" stroke="#C9A227" stroke-width="1" opacity=".5"/><line x1="60" y1="70" x2="60" y2="84" stroke="#C9A227" stroke-width="1" opacity=".5"/><line x1="72" y1="70" x2="72" y2="84" stroke="#C9A227" stroke-width="1" opacity=".5"/><line x1="84" y1="70" x2="84" y2="84" stroke="#C9A227" stroke-width="1" opacity=".5"/><rect x="86" y="52" width="5" height="19" rx="1" fill="#C9A227" opacity=".7"/><rect x="93" y="44" width="5" height="27" rx="1" fill="#C9A227" opacity=".9"/><rect x="100" y="57" width="5" height="14" rx="1" fill="#C9A227" opacity=".6"/></svg>
-  <div><div class="wm">P.R.I.M.E.</div><div class="wmsub">PROCUREMENT &amp; RENOVATION INTELLIGENCE MATCHING ENGINE</div></div>
-  <div class="hdiv"></div>
-  <div class="hinfo"><b>Walker Contractors, LLC</b><br>New Orleans, LA &nbsp;·&nbsp; UEI: USMQMFAGL9M4</div>
-  <div class="hbdgs">
-    <span class="hb" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#EF4444">2 URGENT</span>
-    <span class="hb" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#22C55E">9 AGENTS LIVE</span>
-    <span class="hb" style="background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.35);color:#38BDF8">SCORE 96.5</span>
-    <span class="hb" style="background:var(--gdim);border:1px solid var(--gbd);color:var(--gold)">$8–9/mo</span>
+<!-- SIDEBAR -->
+<nav class="sb">
+  <div class="sb-logo">
+    <div class="sb-mark">P</div>
+    <div><div class="sb-title">IQE <span>PRIME</span></div><div class="sb-ver">v13 · Construction + Supply</div></div>
   </div>
-</div>
 
-<div class="layout">
-<div class="sb">
-  <div style="padding:9px 0 0">
-    <div class="sb-sec-lbl" style="border-top:none">Main</div>
-    <button class="nb active" id="nb-home" onclick="go('home')"><span class="nb-icon">🏠</span><div><div class="nb-lbl">Home</div><div class="nb-desc">Today's overview</div></div><div class="nb-dot" style="background:var(--amber)"></div></button>
-  </div>
-  <div>
-    <div class="sb-sec-lbl">Find Work</div>
-    <button class="nb" id="nb-jobs" onclick="go('jobs')"><span class="nb-icon">🔍</span><div><div class="nb-lbl">Find Jobs</div><div class="nb-desc">50-state job map</div></div></button>
-    <button class="nb" id="nb-bids" onclick="go('bids')"><span class="nb-icon">📋</span><div><div class="nb-lbl">My Bids</div><div class="nb-desc">Track proposals</div></div></button>
-  </div>
-  <div>
-    <div class="sb-sec-lbl">Active Jobs</div>
-    <button class="nb" id="nb-work" onclick="go('work')"><span class="nb-icon">🏗️</span><div><div class="nb-lbl">Active Work</div><div class="nb-desc">Costs · billing · cash flow</div></div></button>
-  </div>
-  <div>
-    <div class="sb-sec-lbl">Grow My Business</div>
-    <button class="nb" id="nb-cert" onclick="go('cert')"><span class="nb-icon">📜</span><div><div class="nb-lbl">Get Certified</div><div class="nb-desc">HUBZone · 8(a) · GSA</div></div></button>
-    <button class="nb" id="nb-todo" onclick="go('todo')"><span class="nb-icon">✅</span><div><div class="nb-lbl">To-Do List</div><div class="nb-desc">Things to do</div></div><div class="nb-dot" style="background:var(--red)"></div></button>
-  </div>
-  <div>
-    <div class="sb-sec-lbl">System</div>
-    <button class="nb" id="nb-sys" onclick="go('sys')"><span class="nb-icon">⚙️</span><div><div class="nb-lbl">System Check</div><div class="nb-desc">How PRIME works</div></div></button>
-  </div>
-  <div class="sb-foot">Built by Noble Erne, LLC<br>for Walker Contractors, LLC<br>PRIME v12 &nbsp;·&nbsp; $8–9/month</div>
-</div>
+  <div class="sb-group">Command</div>
+  <button class="sb-btn active" onclick="go('home')">🏠 Command Center</button>
 
+  <div class="sb-group">Find Work</div>
+  <button class="sb-btn" onclick="go('construction')">🏗️ Construction<span class="sb-dot" style="background:var(--green);box-shadow:0 0 6px var(--green)"></span></button>
+  <button class="sb-btn" onclick="go('supply')">📦 Supply & Fulfillment<span class="sb-dot" style="background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></span></button>
+
+  <div class="sb-group">Win Work</div>
+  <button class="sb-btn" onclick="go('bids')">📋 My Bids</button>
+
+  <div class="sb-group">Execute</div>
+  <button class="sb-btn" onclick="go('active')">📊 Active Projects</button>
+
+  <div class="sb-group">Compliance</div>
+  <button class="sb-btn" onclick="go('compliance')">🛡️ Certs · Bonds · Safety</button>
+
+  <div class="sb-group">Intelligence</div>
+  <button class="sb-btn" onclick="go('intel')">🔍 Market Intel</button>
+
+  <div class="sb-group">System</div>
+  <button class="sb-btn" onclick="go('system')">⚙️ Agents & Config</button>
+
+  <div class="sb-foot">Built by Noble Erne, LLC<br>for Walker Contractors, LLC<br>System Score: 99/100 · $8–9/mo</div>
+</nav>
+
+<!-- MAIN CONTENT -->
 <div class="main">
-<!-- HOME -->
-<div id="t-home">
-  <div class="card card-gold" style="border-left:4px solid var(--gold);padding:12px 15px;margin-bottom:13px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-      <span style="font-size:9px;font-weight:700;color:var(--gold);letter-spacing:.08em">🤖 BRANDY — MORNING BRIEF</span>
-      <span style="font-size:9px;color:var(--steel)" id="ltime">Loading...</span>
+
+<!-- ═══ HOME ═══ -->
+<div class="tab active" id="t-home">
+  <!-- BRANDI BRIEF -->
+  <div style="background:var(--card);border:1px solid var(--goldBd);border-left:4px solid var(--gold);border-radius:8px;padding:14px 18px;margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em">🤖 BRANDI — MORNING BRIEF</span>
+      <span style="font-size:9px;color:var(--t3)" id="clock">Loading...</span>
     </div>
-    <div style="font-size:11px;color:var(--slt);line-height:1.7">Good morning, Joseph. PRIME scanned <b style="color:var(--white)">4,218 federal contracts</b> overnight and found <b style="color:var(--green)">3 top-priority construction jobs</b> for you. You have <b style="color:var(--amber)">4 alerts</b> that need attention.</div>
+    <div style="font-size:12px;color:var(--t2);line-height:1.7">Good morning, Joseph. PRIME scanned <b style="color:var(--t1)">4,218 federal contracts</b> overnight and found <b style="color:var(--green)">3 construction</b> and <b style="color:var(--cyan)">5 supply</b> opportunities above threshold. <b style="color:var(--gold)">2 rated STRONG BID.</b> Your GL insurance renews in 52 days — renewal email drafted to PrimeOpps1@gmail.com.</div>
   </div>
-  <div class="kpi-row">
-    <div class="kpi" style="border-left:3px solid var(--green)"><div class="kpi-n" style="color:var(--green)">3</div><div class="kpi-l">Top Jobs</div><div class="kpi-s">Score 85+ today</div></div>
-    <div class="kpi" style="border-left:3px solid var(--gold)"><div class="kpi-n" style="color:var(--gold)">$16.8M</div><div class="kpi-l">Pipeline</div><div class="kpi-s">9 active bids</div></div>
-    <div class="kpi" style="border-left:3px solid var(--cyan)"><div class="kpi-n" style="color:var(--cyan)">51</div><div class="kpi-l">States</div><div class="kpi-s">All 50 + DC</div></div>
-    <div class="kpi" style="border-left:3px solid var(--violet)"><div class="kpi-n" style="color:var(--violet)">96.5</div><div class="kpi-l">System Score</div><div class="kpi-s">Out of 100</div></div>
+
+  <!-- KPIs -->
+  <div class="kpi-row" style="margin-bottom:16px">
+    <div class="kpi" style="border-left:3px solid var(--green)"><div class="kpi-val" style="color:var(--green)">$8.6M</div><div class="kpi-lbl">Construction Pipeline</div><div class="kpi-sub">5 opps · 3 above PRIME 70</div></div>
+    <div class="kpi" style="border-left:3px solid var(--cyan)"><div class="kpi-val" style="color:var(--cyan)">$481K</div><div class="kpi-lbl">Supply Pipeline</div><div class="kpi-sub">5 opps · 4 above ACQ 70</div></div>
+    <div class="kpi" style="border-left:3px solid var(--gold)"><div class="kpi-val" style="color:var(--gold)">4</div><div class="kpi-lbl">Active Bids</div><div class="kpi-sub">1 won · 2 submitted · 1 draft</div></div>
+    <div class="kpi" style="border-left:3px solid var(--violet)"><div class="kpi-val" style="color:var(--violet)">$3.2M</div><div class="kpi-lbl">30-Day Weighted</div><div class="kpi-sub">By win probability</div></div>
   </div>
-  <div class="two">
+
+  <!-- TWO COLUMNS -->
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:14px">
+    <!-- LEFT: Top Opps + Alerts -->
     <div>
-      <div style="font-size:9px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px">🔥 Top 3 Jobs Right Now</div>
-      <div class="opp" style="border-color:var(--green)"><div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:5px"><span class="tag tg">SCORE 91</span><span class="tag tv">SDB</span><span class="tag tg">✓ Licensed</span><span style="font-size:20px;font-weight:900;color:var(--green);margin-left:auto;line-height:1">91</span></div><div class="opp-title">VA Clinic Renovation — Slidell, LA</div><div class="opp-meta">VA · $2.4M · NAICS 236220 · 18 days left</div><div class="score-bar"><div style="height:100%;width:91%;background:var(--green)"></div></div></div>
-      <div class="opp" style="border-color:var(--cyan)"><div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:5px"><span class="tag tc">SCORE 88</span><span class="tag ts">Small Biz</span><span class="tag tg">✓ Licensed</span><span style="font-size:20px;font-weight:900;color:var(--cyan);margin-left:auto;line-height:1">88</span></div><div class="opp-title">NAVFAC Federal City — Electrical + HVAC</div><div class="opp-meta">NAVFAC · $1.4M · NAICS 238210 · 24 days left</div><div class="score-bar"><div style="height:100%;width:88%;background:var(--cyan)"></div></div></div>
-      <div class="opp" style="border-color:var(--green)"><div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:5px"><span class="tag tg">SCORE 86</span><span class="tag tv">SDB</span><span class="tag tg">✓ Licensed</span><span style="font-size:20px;font-weight:900;color:var(--green);margin-left:auto;line-height:1">86</span></div><div class="opp-title">Baton Rouge VA Clinic Renovation</div><div class="opp-meta">VA · $875K · NAICS 236220 · 15 days left</div><div class="score-bar"><div style="height:100%;width:86%;background:var(--green)"></div></div></div>
+      <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.12em;margin-bottom:8px;text-transform:uppercase">Top Opportunities Today</div>
+      <div class="opp" style="margin-bottom:6px;border-left:3px solid var(--green)">
+        <div><div class="opp-title">VA Slidell Clinic Renovation</div><div class="opp-meta">VA · 236220 · <span class="badge" style="background:var(--goldDim);color:var(--gold);border:1px solid var(--goldBd)">SDB</span></div></div>
+        <div class="opp-val">$2.4M</div>
+        <div><span class="score" style="color:var(--green)">91</span><span class="score-lbl">PRIME</span></div>
+        <div><span class="badge" style="background:var(--greenDim);color:var(--green)">✅ STRONG BID</span></div>
+        <div class="opp-dl" style="color:var(--t3)">22d</div>
+      </div>
+      <div class="opp" style="margin-bottom:6px;border-left:3px solid var(--cyan)">
+        <div><div class="opp-title">Diesel Fuel — NAS JRB New Orleans</div><div class="opp-meta">DLA · Fuel · <span class="badge" style="background:var(--amberDim);color:var(--amber);border:1px solid rgba(245,158,11,.25)">DIBBS</span> <span class="badge" style="background:var(--violetDim);color:var(--violet);border:1px solid rgba(167,139,250,.25)">Annual IDIQ</span></div></div>
+        <div class="opp-val">$340K</div>
+        <div><span class="score" style="color:var(--green)">94</span><span class="score-lbl">ACQ</span></div>
+        <div><span class="badge" style="background:var(--greenDim);color:var(--green)">✅ STRONG BID</span></div>
+        <div class="opp-dl" style="color:var(--t3)">30d</div>
+      </div>
+      <div class="opp" style="margin-bottom:6px;border-left:3px solid var(--green)">
+        <div><div class="opp-title">NAVFAC Federal City Electrical + HVAC</div><div class="opp-meta">NAVFAC · 238210 · <span class="badge" style="background:var(--cyanDim);color:var(--cyan);border:1px solid var(--cyanBd)">SB</span></div></div>
+        <div class="opp-val">$1.4M</div>
+        <div><span class="score" style="color:var(--green)">88</span><span class="score-lbl">PRIME</span></div>
+        <div><span class="badge" style="background:var(--greenDim);color:var(--green)">✅ STRONG BID</span></div>
+        <div class="opp-dl" style="color:var(--t3)">18d</div>
+      </div>
+      <div class="opp" style="margin-bottom:16px;border-left:3px solid var(--cyan)">
+        <div><div class="opp-title">Janitorial Paper — VA Medical Center</div><div class="opp-meta">VA · Janitorial · <span class="badge" style="background:var(--goldDim);color:var(--gold);border:1px solid var(--goldBd)">SDB</span> <span class="badge" style="background:var(--violetDim);color:var(--violet);border:1px solid rgba(167,139,250,.25)">Quarterly BPA</span></div></div>
+        <div class="opp-val">$87K</div>
+        <div><span class="score" style="color:var(--green)">91</span><span class="score-lbl">ACQ</span></div>
+        <div><span class="badge" style="background:var(--greenDim);color:var(--green)">✅ STRONG BID</span></div>
+        <div class="opp-dl" style="color:var(--t3)">21d</div>
+      </div>
+
+      <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.12em;margin-bottom:8px;text-transform:uppercase">🚨 Active Alerts</div>
+      <div class="alert" style="background:var(--redDim);border:1px solid rgba(248,113,113,.22)"><span class="badge" style="background:var(--redDim);color:var(--red);border:1px solid rgba(248,113,113,.35)">URGENT</span><span style="font-size:11px;color:var(--t2)">Enter past performance — proposals are 15–30% weaker without it</span></div>
+      <div class="alert" style="background:var(--amberDim);border:1px solid rgba(245,158,11,.22)"><span class="badge" style="background:var(--amberDim);color:var(--amber);border:1px solid rgba(245,158,11,.35)">HIGH</span><span style="font-size:11px;color:var(--t2)">HUBZone check not done — 5 minutes could unlock $20B+ in contracts</span></div>
+      <div class="alert" style="background:var(--goldDim);border:1px solid var(--goldBd)"><span class="badge" style="background:var(--goldDim);color:var(--gold);border:1px solid var(--goldBd)">MEDIUM</span><span style="font-size:11px;color:var(--t2)">GL Insurance renews in 52 days — renewal draft email saved</span></div>
     </div>
-    <div>
-      <div style="font-size:9px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px">🚨 Alerts — 4 Open</div>
-      <div class="card card-r" style="margin-bottom:6px"><span class="tag tr">URGENT</span><div style="font-size:10px;color:var(--slt);margin-top:4px;line-height:1.4">Add your SAM.gov expiration date — VAULT can't protect you without it.</div></div>
-      <div class="card card-a" style="margin-bottom:6px"><span class="tag ta">HIGH</span><div style="font-size:10px;color:var(--slt);margin-top:4px;line-height:1.4">HUBZone check not done — 5 minutes could unlock $20B+ in contracts.</div></div>
-      <div class="card" style="border-left:3px solid var(--gold);margin-bottom:6px"><span class="tag" style="background:var(--gdim);border:1px solid var(--gbd);color:var(--gold)">LICENSE</span><div style="font-size:10px;color:var(--slt);margin-top:4px;line-height:1.4">VA Richmond Roof needs a Virginia license. Get one or partner up.</div></div>
-      <div class="card" style="margin-bottom:10px"><span class="tag ts">INFO</span><div style="font-size:10px;color:var(--slt);margin-top:4px;line-height:1.4">4 insurance policies not entered — VAULT can't track expiration dates.</div></div>
-      <div style="font-size:9px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px">📜 Certifications</div>
-      <div class="card">
-        <div style="margin-bottom:9px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:10px;font-weight:700;color:var(--white)">HUBZone</span><span style="font-size:9px;color:var(--amber);font-weight:700">0/6</span></div><div class="pb"><div class="pb-fill" style="width:0%;background:var(--amber)"></div></div></div>
-        <div style="margin-bottom:9px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:10px;font-weight:700;color:var(--white)">8(a) Program</span><span style="font-size:9px;color:var(--cyan);font-weight:700">1/6</span></div><div class="pb"><div class="pb-fill" style="width:17%;background:var(--cyan)"></div></div></div>
-        <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:10px;font-weight:700;color:var(--white)">GSA Schedule</span><span style="font-size:9px;color:var(--violet);font-weight:700">0/5</span></div><div class="pb"><div class="pb-fill" style="width:0%;background:var(--violet)"></div></div></div>
+
+    <!-- RIGHT: Agent Feed -->
+    <div class="feed">
+      <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.12em;margin-bottom:10px;text-transform:uppercase">Agent Activity Feed</div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--gold)">BRANDI</span><span class="feed-text">Morning digest delivered — 3 construction, 5 supply opps</span><span class="feed-time">2m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--cyan)">JUDGE</span><span class="feed-text">VA Slidell scored PRIME 91 — STRONG BID recommended</span><span class="feed-time">6m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--cyan)">JUDGE</span><span class="feed-text">NAS JRB Diesel scored ACQ 94 — STRONG BID recommended</span><span class="feed-time">7m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--green)">VAULT</span><span class="feed-text">Supply bypass — 5 supply opps cleared (no license needed)</span><span class="feed-time">11m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--green)">SCOUT</span><span class="feed-text">SAM pull: 4,218 records — 312 past NAICS gate</span><span class="feed-time">15m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--green)">SCOUT</span><span class="feed-text">DIBBS pull: 38 new DLA supply purchase orders</span><span class="feed-time">16m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--cyan)">RECON</span><span class="feed-text">Weather check: all active sites clear — no alerts</span><span class="feed-time">22m</span></div>
+      <div class="feed-item"><span class="feed-agent" style="color:var(--green)">VAULT</span><span class="feed-text">GL Insurance renews in 52 days — renewal email drafted</span><span class="feed-time">31m</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONSTRUCTION ═══ -->
+<div class="tab" id="t-construction">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div><div style="font-size:16px;font-weight:700">🏗️ Construction Pipeline</div><div style="font-size:10px;color:var(--t3);margin-top:2px">Scored by PRIME Score (0–100) · License + bonding + location factors</div></div>
+    <div class="kpi" style="border-left:3px solid var(--green);min-width:auto"><div class="kpi-val" style="color:var(--green);font-size:18px">$8.6M</div><div class="kpi-lbl">Pipeline Value · 5 opps</div></div>
+  </div>
+  <div class="col-header"><span>Opportunity</span><span style="text-align:right">Value</span><span style="text-align:center">Score</span><span style="text-align:center">Recommendation</span><span style="text-align:right">Deadline</span></div>
+  <div id="constr-list" style="display:flex;flex-direction:column;gap:6px"></div>
+</div>
+
+<!-- ═══ SUPPLY ═══ -->
+<div class="tab" id="t-supply">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div><div style="font-size:16px;font-weight:700">📦 Supply & Fulfillment Pipeline</div><div style="font-size:10px;color:var(--t3);margin-top:2px">Scored by ACQ Score (0–100) · Location-blind · No license/bonding · Drop-ship fulfillment</div></div>
+    <div class="kpi" style="border-left:3px solid var(--cyan);min-width:auto"><div class="kpi-val" style="color:var(--cyan);font-size:18px">$481K</div><div class="kpi-lbl">Pipeline Value · 5 opps</div></div>
+  </div>
+  <div class="pills">
+    <div class="pill" style="background:var(--amberDim);border:1px solid rgba(245,158,11,.25);color:var(--amber)">⛽ Fuel (1)</div>
+    <div class="pill" style="background:var(--greenDim);border:1px solid var(--greenBd);color:var(--green)">🧹 Janitorial (1)</div>
+    <div class="pill" style="background:var(--cyanDim);border:1px solid var(--cyanBd);color:var(--cyan)">🧤 PPE (1)</div>
+    <div class="pill" style="background:var(--violetDim);border:1px solid rgba(167,139,250,.25);color:var(--violet)">📎 Office (1)</div>
+    <div class="pill" style="background:var(--goldDim);border:1px solid var(--goldBd);color:var(--gold)">☕ Food (1)</div>
+  </div>
+  <div class="col-header"><span>Opportunity</span><span style="text-align:right">Value</span><span style="text-align:center">ACQ</span><span style="text-align:center">Recommendation</span><span style="text-align:right">Deadline</span></div>
+  <div id="supply-list" style="display:flex;flex-direction:column;gap:6px"></div>
+</div>
+
+<!-- ═══ BIDS ═══ -->
+<div class="tab" id="t-bids">
+  <div style="font-size:16px;font-weight:700;margin-bottom:14px">📋 My Bids</div>
+  <div class="filters"><button class="fbtn active">All (4)</button><button class="fbtn">Won (1)</button><button class="fbtn">Submitted (2)</button><button class="fbtn">Draft (1)</button></div>
+  <div id="bids-list"></div>
+</div>
+
+<!-- ═══ ACTIVE ═══ -->
+<div class="tab" id="t-active">
+  <div style="font-size:16px;font-weight:700;margin-bottom:14px">📊 Active Projects & Deliveries</div>
+  <div class="grid2">
+    <div class="card-section" style="border:1px solid var(--greenBd)">
+      <div class="section-label" style="color:var(--green)">CONSTRUCTION</div>
+      <div style="font-size:13px;font-weight:600">VA Baton Rouge Paint Contract</div>
+      <div style="font-size:10px;color:var(--t3);margin-top:4px">Contract: $145K · Spent: $38K · Remaining: $107K</div>
+      <div class="prog" style="margin-top:10px"><div class="prog-fill" style="width:26%;background:var(--green)"></div></div>
+      <div style="font-size:9px;color:var(--t3);margin-top:4px">26% complete · Next: 50% inspection (May 15)</div>
+      <div style="margin-top:12px;font-size:10px;color:var(--t3)">Milestones:</div>
+      <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
+        <span class="badge" style="background:var(--greenDim);color:var(--green)">NTP ✓</span>
+        <span class="badge" style="background:var(--greenDim);color:var(--green)">Mobilization ✓</span>
+        <span class="badge" style="background:var(--amberDim);color:var(--amber)">25% ← CURRENT</span>
+        <span class="badge" style="background:rgba(255,255,255,.04);color:var(--t3)">50%</span>
+        <span class="badge" style="background:rgba(255,255,255,.04);color:var(--t3)">Closeout</span>
+      </div>
+    </div>
+    <div class="card-section">
+      <div class="section-label" style="color:var(--cyan)">SUPPLY DELIVERIES</div>
+      <div style="font-size:13px;font-weight:600">Janitorial — VA Medical Center</div>
+      <div style="font-size:10px;color:var(--t3);margin-top:4px">BPA Value: $87K · Q1 delivered · Q2 pending</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <span class="badge" style="background:var(--greenDim);color:var(--green)">Q1 ✓</span>
+        <span class="badge" style="background:var(--amberDim);color:var(--amber)">Q2 PENDING</span>
+        <span class="badge" style="background:rgba(255,255,255,.04);color:var(--t3)">Q3</span>
+        <span class="badge" style="background:rgba(255,255,255,.04);color:var(--t3)">Q4</span>
+      </div>
+      <div style="font-size:9px;color:var(--t3);margin-top:8px">Margin: 24.3% · Distributor: Imperial Dade · Drop-ship confirmed</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COMPLIANCE ═══ -->
+<div class="tab" id="t-compliance">
+  <div style="font-size:16px;font-weight:700;margin-bottom:14px">🛡️ Compliance · Certifications · Bonding · Safety</div>
+  <div id="comp-list" style="display:flex;flex-direction:column;gap:6px"></div>
+</div>
+
+<!-- ═══ INTELLIGENCE ═══ -->
+<div class="tab" id="t-intel">
+  <div style="font-size:16px;font-weight:700;margin-bottom:14px">🔍 Market Intelligence</div>
+  <div class="grid2">
+    <div class="card-section">
+      <div class="section-label" style="color:var(--gold)">WIN RATE BY CATEGORY</div>
+      <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t2);margin-bottom:3px"><span>SDB Set-Aside</span><span>67% (3 bids)</span></div><div class="bar"><div class="bar-fill" style="width:67%;background:var(--green)"></div></div></div>
+      <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t2);margin-bottom:3px"><span>Small Business</span><span>45% (11 bids)</span></div><div class="bar"><div class="bar-fill" style="width:45%;background:var(--amber)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t2);margin-bottom:3px"><span>Supply (all)</span><span>Pipeline — no outcomes yet</span></div><div class="bar"><div class="bar-fill" style="width:0%"></div></div></div>
+    </div>
+    <div class="card-section">
+      <div class="section-label" style="color:var(--cyan)">CONTRACTING OFFICER CONTACTS</div>
+      <div class="co-row" style="border-bottom:1px solid var(--bd)"><div class="co-avatar" style="background:var(--cyanDim);color:var(--cyan)">J</div><div style="flex:1"><div style="font-size:11px;color:var(--t1)">J. Martinez</div><div style="font-size:9px;color:var(--t3)">VA VISN 16</div></div><span style="font-size:9px;color:var(--t3)">4 opps</span></div>
+      <div class="co-row" style="border-bottom:1px solid var(--bd)"><div class="co-avatar" style="background:var(--cyanDim);color:var(--cyan)">R</div><div style="flex:1"><div style="font-size:11px;color:var(--t1)">R. Thompson</div><div style="font-size:9px;color:var(--t3)">NAVFAC SE</div></div><span style="font-size:9px;color:var(--t3)">2 opps</span></div>
+      <div class="co-row"><div class="co-avatar" style="background:var(--cyanDim);color:var(--cyan)">D</div><div style="flex:1"><div style="font-size:11px;color:var(--t1)">D. Chen</div><div style="font-size:9px;color:var(--t3)">GSA PBS R7</div></div><span style="font-size:9px;color:var(--t3)">3 opps</span></div>
+    </div>
+    <div class="card-section" style="grid-column:1 / -1">
+      <div class="section-label" style="color:var(--violet)">WEIGHTED PIPELINE FORECAST</div>
+      <div style="display:flex;gap:16px">
+        <div class="fc" style="background:var(--violetDim);border:1px solid rgba(167,139,250,.22)"><div style="font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase">30 Day</div><div style="font-size:20px;font-weight:800;color:var(--violet);margin-top:4px">$3.2M</div><div style="font-size:9px;color:var(--t3);margin-top:2px">of $9.1M total · 35% win-weighted</div></div>
+        <div class="fc" style="background:var(--violetDim);border:1px solid rgba(167,139,250,.22)"><div style="font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase">60 Day</div><div style="font-size:20px;font-weight:800;color:var(--violet);margin-top:4px">$5.1M</div><div style="font-size:9px;color:var(--t3);margin-top:2px">of $12.4M total · 41% win-weighted</div></div>
+        <div class="fc" style="background:var(--violetDim);border:1px solid rgba(167,139,250,.22)"><div style="font-size:9px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase">90 Day</div><div style="font-size:20px;font-weight:800;color:var(--violet);margin-top:4px">$7.8M</div><div style="font-size:9px;color:var(--t3);margin-top:2px">of $18.2M total · 43% win-weighted</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FIND JOBS -->
-<div id="t-jobs" style="display:none">
-  <div class="sh"><h1>🔍 Find Jobs — 50-State Map</h1><p>Click any state tile to see available federal contracts. Green = can bid today. HIGH POT badge = strong opportunity.</p></div>
-  <div class="kpi-row">
-    <div class="kpi" style="border-left:3px solid var(--green)"><div class="kpi-n" style="color:var(--green)">11</div><div class="kpi-l">High Potential</div><div class="kpi-s">Score 80+ licensed</div></div>
-    <div class="kpi" style="border-left:3px solid var(--cyan)"><div class="kpi-n" style="color:var(--cyan)">23</div><div class="kpi-l">States With Jobs</div><div class="kpi-s">Active opps found</div></div>
-    <div class="kpi" style="border-left:3px solid var(--amber)"><div class="kpi-n" style="color:var(--amber)">9</div><div class="kpi-l">Need License</div><div class="kpi-s">Opps found · lic needed</div></div>
-    <div class="kpi" style="border-left:3px solid var(--gold)"><div class="kpi-n" style="color:var(--gold)">$41.2M</div><div class="kpi-l">Total Pipeline</div><div class="kpi-s">National value</div></div>
-  </div>
-  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;align-items:center">
-    <span style="font-size:8px;color:var(--steel);text-transform:uppercase;letter-spacing:.1em;margin-right:3px">Filter:</span>
-    <button class="tag tg" style="cursor:pointer;padding:4px 9px;font-size:9px" id="sf-all" onclick="sfilt('all')">All States</button>
-    <button class="tag ts" style="cursor:pointer;padding:4px 9px;font-size:9px" id="sf-hp" onclick="sfilt('hp')">⭐ High Potential</button>
-    <button class="tag ts" style="cursor:pointer;padding:4px 9px;font-size:9px" id="sf-bid" onclick="sfilt('bid')">✓ Can Bid Today</button>
-    <button class="tag ts" style="cursor:pointer;padding:4px 9px;font-size:9px" id="sf-gap" onclick="sfilt('gap')">⚠ License Gap</button>
-    <button class="tag ts" style="cursor:pointer;padding:4px 9px;font-size:9px" id="sf-gulf" onclick="sfilt('gulf')">🌊 Gulf Coast</button>
-  </div>
-  <div style="display:flex;gap:11px">
-    <div style="flex:1;min-width:0"><div id="sg-wrap"></div></div>
-    <div id="sd-panel" style="width:258px;flex-shrink:0"><div class="card" style="text-align:center;padding:22px 12px;font-size:10px;color:var(--steel);line-height:1.8">👆 Click any state tile<br>to see its opportunities</div></div>
-  </div>
-</div>
-
-<!-- MY BIDS -->
-<div id="t-bids" style="display:none">
-  <div class="sh"><h1>📋 My Bids — Pipeline</h1><p>Track every proposal from first look to final decision. 7 stages total.</p></div>
-  <div class="kpi-row">
-    <div class="kpi" style="border-left:3px solid var(--gold)"><div class="kpi-n" style="color:var(--gold)">2</div><div class="kpi-l">Bid Ready</div><div class="kpi-s">Ready to send</div></div>
-    <div class="kpi" style="border-left:3px solid var(--violet)"><div class="kpi-n" style="color:var(--violet)">1</div><div class="kpi-l">Submitted</div><div class="kpi-s">Waiting on decision</div></div>
-    <div class="kpi" style="border-left:3px solid var(--amber)"><div class="kpi-n" style="color:var(--amber)">2</div><div class="kpi-l">Pursuing</div><div class="kpi-s">Working on it</div></div>
-    <div class="kpi" style="border-left:3px solid var(--green)"><div class="kpi-n" style="color:var(--green)">$16.8M</div><div class="kpi-l">Total Value</div><div class="kpi-s">In active pipeline</div></div>
-  </div>
-  <div class="pipe-wrap"><div class="pipe-row">
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--steel)"><div class="stg-l" style="color:var(--steel)">👀 Discovery</div><div class="stg-v">$4.0M</div><div class="stg-c">2 deals</div></div><div class="deal"><div class="deal-t">VA Richmond Roofing</div><div class="deal-m"><span style="color:var(--steel)">VA</span><span style="color:var(--amber)">$2.1M</span></div></div><div class="deal"><div class="deal-t">VA BR New Wing</div><div class="deal-m"><span style="color:var(--steel)">VA</span><span style="color:var(--amber)">$1.95M</span></div></div></div>
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--cyan)"><div class="stg-l" style="color:var(--cyan)">🔎 Qualify</div><div class="stg-v">$4.35M</div><div class="stg-c">2 deals</div></div><div class="deal"><div class="deal-t">Camp Maxey Reno</div><div class="deal-m"><span style="color:var(--cyan)">USACE</span><span style="color:var(--gold)">$3.2M</span></div></div><div class="deal"><div class="deal-t">TX TAMUS HVAC</div><div class="deal-m"><span style="color:var(--cyan)">TX DIR</span><span style="color:var(--gold)">$1.15M</span></div></div></div>
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--amber)"><div class="stg-l" style="color:var(--amber)">⚡ Pursuing</div><div class="stg-v">$7.48M</div><div class="stg-c">2 deals</div></div><div class="deal"><div class="deal-t">USACE West Bank Levee</div><div class="deal-m"><span style="color:var(--amber)">USACE</span><span style="color:var(--gold)">$6.8M</span></div></div><div class="deal"><div class="deal-t">GSA Leake Ave</div><div class="deal-m"><span style="color:var(--amber)">GSA</span><span style="color:var(--gold)">$680K</span></div></div></div>
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--gold);background:var(--gdim)"><div class="stg-l" style="color:var(--gold)">📝 Bid Ready</div><div class="stg-v">$3.28M</div><div class="stg-c">2 deals</div></div><div class="deal" style="border-left:3px solid var(--gold)"><div class="deal-t">VA Slidell Clinic ⭐</div><div class="deal-m"><span style="color:var(--gold)">VA VISN 16</span><span style="color:var(--green);font-weight:700">$2.4M</span></div></div><div class="deal" style="border-left:3px solid var(--gold)"><div class="deal-t">Baton Rouge CBOC</div><div class="deal-m"><span style="color:var(--gold)">VA</span><span style="color:var(--green)">$875K</span></div></div></div>
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--violet)"><div class="stg-l" style="color:var(--violet)">📬 Submitted</div><div class="stg-v">$1.4M</div><div class="stg-c">1 deal</div></div><div class="deal"><div class="deal-t">NAVFAC Federal City</div><div class="deal-m"><span style="color:var(--violet)">NAVFAC</span><span style="color:var(--gold)">$1.4M</span></div></div></div>
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--green)"><div class="stg-l" style="color:var(--green)">🏆 Won!</div><div class="stg-v">$0</div><div class="stg-c">0 deals</div></div></div>
-    <div class="stage"><div class="stg-hdr" style="border-color:var(--red)"><div class="stg-l" style="color:var(--red)">❌ Lost</div><div class="stg-v">$890K</div><div class="stg-c">1 deal</div></div><div class="deal"><div class="deal-t">NPS Jean Lafitte</div><div class="deal-m"><span style="color:var(--red)">NPS</span><span>$890K</span></div></div></div>
-  </div></div>
-</div>
-
-<!-- ACTIVE WORK -->
-<div id="t-work" style="display:none">
-  <div class="sh"><h1>🏗️ Active Work — VA Slidell Clinic</h1><p>Contract 36C25622C0144 · 45% complete · On track</p></div>
-  <div class="kpi-row">
-    <div class="kpi" style="border-left:3px solid var(--white)"><div class="kpi-n" style="color:var(--white)">$2.4M</div><div class="kpi-l">Contract Value</div><div class="kpi-s">Total job worth</div></div>
-    <div class="kpi" style="border-left:3px solid var(--cyan)"><div class="kpi-n" style="color:var(--cyan)">$1.08M</div><div class="kpi-l">Billed So Far</div><div class="kpi-s">Sent to government</div></div>
-    <div class="kpi" style="border-left:3px solid var(--amber)"><div class="kpi-n" style="color:var(--amber)">$108K</div><div class="kpi-l">Held Back</div><div class="kpi-s">Retainage (10%)</div></div>
-    <div class="kpi" style="border-left:3px solid var(--green)"><div class="kpi-n" style="color:var(--green)">45%</div><div class="kpi-l">Done</div><div class="kpi-s">Overall progress</div></div>
-  </div>
-  <div class="stabs">
-    <button class="stb a" id="stb-costs" onclick="sw('costs')">💰 Costs vs Budget</button>
-    <button class="stb" id="stb-bill" onclick="sw('bill')">📄 Billing</button>
-    <button class="stb" id="stb-cash" onclick="sw('cash')">💵 Cash Flow</button>
-  </div>
-  <div id="sw-costs">
-    <table class="ct"><thead><tr><th>Cost Type</th><th>Budget</th><th>Actual</th><th>Expected Final</th><th>Over / Under</th></tr></thead>
-    <tbody>
-      <tr><td>LABOR (Workers)</td><td style="color:var(--steel)">$485,000</td><td>$512,300</td><td style="color:var(--slt)">$535,000</td><td style="color:var(--red);font-weight:700">+$27,300 ⚠</td></tr>
-      <tr><td>MATERIALS</td><td style="color:var(--steel)">$310,000</td><td>$298,400</td><td style="color:var(--slt)">$305,000</td><td style="color:var(--green);font-weight:700">-$11,600 ✓</td></tr>
-      <tr><td>EQUIPMENT</td><td style="color:var(--steel)">$85,000</td><td>$91,200</td><td style="color:var(--slt)">$91,200</td><td style="color:var(--red);font-weight:700">+$6,200 ⚠</td></tr>
-      <tr><td>SUBCONTRACTORS</td><td style="color:var(--steel)">$620,000</td><td>$584,100</td><td style="color:var(--slt)">$600,000</td><td style="color:var(--green);font-weight:700">-$35,900 ✓</td></tr>
-      <tr><td>GENERAL CONDITIONS</td><td style="color:var(--steel)">$145,000</td><td>$132,800</td><td style="color:var(--slt)">$145,000</td><td style="color:var(--green);font-weight:700">-$12,200 ✓</td></tr>
-      <tr><td>OVERHEAD</td><td style="color:var(--steel)">$180,000</td><td>$168,400</td><td style="color:var(--slt)">$175,000</td><td style="color:var(--green);font-weight:700">-$11,600 ✓</td></tr>
-      <tr><td>BOND</td><td style="color:var(--steel)">$44,000</td><td>$44,000</td><td style="color:var(--slt)">$44,000</td><td style="color:var(--steel)">$0</td></tr>
-      <tr><td>CONTINGENCY</td><td style="color:var(--steel)">$75,000</td><td>$41,200</td><td style="color:var(--slt)">$60,000</td><td style="color:var(--green);font-weight:700">-$33,800 ✓</td></tr>
-      <tr class="tr-total"><td style="color:var(--gold)">TOTAL</td><td style="color:var(--slt)">$1,944,000</td><td style="color:var(--white)">$1,872,200</td><td style="color:var(--slt)">$1,955,200</td><td style="color:var(--green);font-weight:900">-$71,800 ✓</td></tr>
-    </tbody></table>
-    <div class="ibox" style="background:var(--gdm);border:1px solid var(--grd);color:var(--green);margin-top:9px">✓ <b>No billing problems detected.</b> Labor is slightly over — review before next invoice. Audit check: ALL CLEAR.</div>
-  </div>
-  <div id="sw-bill" style="display:none"><div class="card card-gold"><div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:11px">AIA G702 — Monthly Payment Application</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px"><div style="background:var(--clo);padding:9px 11px;border-radius:var(--r)"><div style="font-size:8px;color:var(--steel);margin-bottom:3px">Total Contract</div><div style="font-size:15px;font-weight:900;color:var(--white)">$2,400,000</div></div><div style="background:var(--clo);padding:9px 11px;border-radius:var(--r)"><div style="font-size:8px;color:var(--steel);margin-bottom:3px">Work Done So Far</div><div style="font-size:15px;font-weight:900;color:var(--cyan)">$1,080,000</div></div><div style="background:var(--clo);padding:9px 11px;border-radius:var(--r)"><div style="font-size:8px;color:var(--steel);margin-bottom:3px">Government Holding Back</div><div style="font-size:15px;font-weight:900;color:var(--amber)">$108,000</div></div><div style="background:var(--clo);padding:9px 11px;border-radius:var(--r)"><div style="font-size:8px;color:var(--steel);margin-bottom:3px">This Month's Bill</div><div style="font-size:15px;font-weight:900;color:var(--green)">$280,000</div></div></div><div class="ibox" style="background:var(--gdim);border:1px solid var(--gbd);color:var(--gold);margin-top:10px">G702 is ready. Joseph needs to sign it and send to the contracting officer.</div></div></div>
-  <div id="sw-cash" style="display:none"><div class="card"><div style="font-size:10px;color:var(--steel);margin-bottom:10px">Next 90 days — money coming in and going out</div><div style="display:flex;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--steel);width:50px;flex-shrink:0">May 8</span><span style="font-size:10px;color:var(--slt);flex:1">Government pays Walker (billing + 14 day rule)</span><span style="font-size:11px;font-weight:700;color:var(--green)">+$280,000</span></div><div style="display:flex;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--steel);width:50px;flex-shrink:0">May 15</span><span style="font-size:10px;color:var(--slt);flex:1">Walker pays subcontractors (7-day rule)</span><span style="font-size:11px;font-weight:700;color:var(--red)">-$145,000</span></div><div style="display:flex;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--steel);width:50px;flex-shrink:0">May 20</span><span style="font-size:10px;color:var(--slt);flex:1">Pay material suppliers</span><span style="font-size:11px;font-weight:700;color:var(--red)">-$82,000</span></div><div style="display:flex;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--steel);width:50px;flex-shrink:0">Jun 1</span><span style="font-size:10px;color:var(--slt);flex:1">Next monthly invoice sent to government</span><span style="font-size:11px;font-weight:700;color:var(--green)">+$300,000</span></div><div style="display:flex;gap:9px;padding:8px 0"><span style="font-size:9px;color:var(--steel);width:50px;flex-shrink:0">Jun 7</span><span style="font-size:10px;color:var(--slt);flex:1">Biweekly payroll</span><span style="font-size:11px;font-weight:700;color:var(--red)">-$68,000</span></div><div style="display:flex;justify-content:space-between;padding:11px 0 4px;border-top:2px solid var(--gbd);margin-top:5px"><span style="font-size:10px;font-weight:700;color:var(--white)">Net Cash Position (Estimated)</span><span style="font-size:15px;font-weight:900;color:var(--green)">+$285,000</span></div></div></div>
-</div>
-
-<!-- GET CERTIFIED -->
-<div id="t-cert" style="display:none">
-  <div class="sh"><h1>📜 Get Certified — Grow Your Business</h1><p>More certifications = more contract types you're allowed to bid. Each one unlocks new money.</p></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:13px">
-    <button onclick="sc2('hub')" id="cb-hub" style="padding:10px 12px;border:1px solid rgba(245,158,11,.6);border-radius:var(--r);background:var(--adm);cursor:pointer;text-align:left"><div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:3px">HUBZone</div><div class="pb" style="margin-bottom:3px"><div class="pb-fill" style="width:0%;background:var(--amber)"></div></div><div style="font-size:8px;color:var(--steel)">Step 0/6 · Not started</div></button>
-    <button onclick="sc2('8a')" id="cb-8a" style="padding:10px 12px;border:1px solid rgba(56,189,248,.3);border-radius:var(--r);background:var(--card);cursor:pointer;text-align:left"><div style="font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:3px">8(a) Program</div><div class="pb" style="margin-bottom:3px"><div class="pb-fill" style="width:17%;background:var(--cyan)"></div></div><div style="font-size:8px;color:var(--steel)">Step 1/6 · In progress</div></button>
-    <button onclick="sc2('gsa')" id="cb-gsa" style="padding:10px 12px;border:1px solid rgba(167,139,250,.3);border-radius:var(--r);background:var(--card);cursor:pointer;text-align:left"><div style="font-size:11px;font-weight:700;color:var(--violet);margin-bottom:3px">GSA Schedule</div><div class="pb" style="margin-bottom:3px"><div class="pb-fill" style="width:0%;background:var(--violet)"></div></div><div style="font-size:8px;color:var(--steel)">Step 0/5 · Not started</div></button>
-  </div>
-  <div id="cert-content">
-    <div class="ibox" style="background:var(--adm);border:1px solid var(--abd);color:var(--amber)">⭐ <b>Step 1 takes 5 minutes.</b> Just check one website. VAULT has reminded you 12 times. Benefit: $20B+ more in contracts per year.</div>
-    <div class="cstage" style="border-color:var(--amber)"><div class="csnum" style="background:var(--adm);border-color:var(--amber);color:var(--amber)">1</div><div><div class="csn">Check if your address (70114) is in a HUBZone</div><div class="csa" style="color:var(--amber)">→ maps.certify.sba.gov/hubzone/map — enter 70114</div></div><span class="tag ta" style="flex-shrink:0;margin-left:auto">DO FIRST</span></div>
-    <div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">2</div><div><div class="csn" style="color:var(--steel)">Confirm 35% of employees live in a HUBZone area</div></div></div>
-    <div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">3</div><div class="csn" style="color:var(--steel)">Gather documents (lease, tax returns, payroll records)</div></div>
-    <div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">4</div><div class="csn" style="color:var(--steel)">Submit application at mycertifications.sba.gov</div></div>
-    <div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">5</div><div class="csn" style="color:var(--steel)">Wait for SBA review (60–90 days)</div></div>
-    <div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">6</div><div class="csn" style="color:var(--steel)">🎉 HUBZone active — renew every year</div></div>
-  </div>
-</div>
-
-<!-- TO-DO -->
-<div id="t-todo" style="display:none">
-  <div class="sh"><h1>✅ To-Do List — Things Joseph Needs to Do</h1><p>These 7 tasks can't be automated — only you can complete them. Total time: about 4 hours.</p></div>
-  <div class="ibox" style="background:var(--rdm);border:1px solid var(--rbd);color:var(--red)">🚨 <b>Do tasks 1 and 2 first.</b> They affect every single bid PRIME sends out. Both take under an hour — just a browser, no tech skills needed.</div>
-  <div class="action" style="border-color:var(--red)" onclick="toggleDone(this,'red')"><div class="chk" style="border-color:var(--red)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag tr">URGENT</span><div class="at">1. Enter Your Past Jobs</div></div><div class="aw">Every bid gets 15–30% stronger. Go to IQE Prime → Past Performance → Import CSV.</div></div><div class="atm">10 min</div></div>
-  <div class="action" style="border-color:var(--red)" onclick="toggleDone(this,'red')"><div class="chk" style="border-color:var(--red)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag tr">URGENT</span><div class="at">2. Update SAM.gov — Add All Your Job Types</div></div><div class="aw">Without all 36 NAICS codes, bids can be thrown out before anyone reads them.</div></div><div class="atm">30–45 min</div></div>
-  <div class="action" style="border-color:var(--amber)" onclick="toggleDone(this,'amber')"><div class="chk" style="border-color:var(--amber)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag ta">HIGH</span><div class="at">3. Call Your Surety Agent for Bonding Limits</div></div><div class="aw">PRIME is using guessed numbers. Real limits = accurate scoring on every bid over $500K.</div></div><div class="atm">1 call</div></div>
-  <div class="action" style="border-color:var(--amber)" onclick="toggleDone(this,'amber')"><div class="chk" style="border-color:var(--amber)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag ta">HIGH</span><div class="at">4. Connect QuickBooks to PRIME</div></div><div class="aw">After one-time setup, PRIME pulls job costs automatically every Monday.</div></div><div class="atm">1–2 hrs</div></div>
-  <div class="action" style="border-color:var(--amber)" onclick="toggleDone(this,'amber')"><div class="chk" style="border-color:var(--amber)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag ta">HIGH</span><div class="at">5. Check HUBZone — Takes 5 Minutes</div></div><div class="aw">maps.certify.sba.gov → enter 70114. Could unlock $20B+ more in contracts.</div></div><div class="atm">5 min</div></div>
-  <div class="action" style="border-color:var(--cyan)" onclick="toggleDone(this,'cyan')"><div class="chk" style="border-color:var(--cyan)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag tc">MEDIUM</span><div class="at">6. Create a Free DocuSign Account</div></div><div class="aw">Sign teaming agreements digitally. Free up to 5/month at apps.docusign.com.</div></div><div class="atm">45 min</div></div>
-  <div class="action" style="border-color:var(--steel)" onclick="toggleDone(this,'steel')"><div class="chk" style="border-color:var(--steel)"></div><div class="abt"><div style="display:flex;gap:6px;margin-bottom:4px"><span class="tag ts">LOW</span><div class="at">7. Register on Florida and Georgia Job Boards</div></div><div class="aw">Free vendor registration at myfloridamarketplace.com and ssl.doas.state.ga.us.</div></div><div class="atm">1 hr both</div></div>
-</div>
-
-<!-- SYSTEM -->
-<div id="t-sys" style="display:none">
-  <div class="sh"><h1>⚙️ System Check — How PRIME Is Working</h1><p>9 AI agents running 24/7. All green. Score: 96.5 out of 100. Monthly cost: $8–9.</p></div>
-  <div class="kpi-row">
-    <div class="kpi" style="border-left:3px solid var(--green)"><div class="kpi-n" style="color:var(--green)">9/9</div><div class="kpi-l">Agents Live</div><div class="kpi-s">All running</div></div>
-    <div class="kpi" style="border-left:3px solid var(--violet)"><div class="kpi-n" style="color:var(--violet)">96.5</div><div class="kpi-l">System Score</div><div class="kpi-s">Out of 100</div></div>
-    <div class="kpi" style="border-left:3px solid var(--cyan)"><div class="kpi-n" style="color:var(--cyan)">$8–9</div><div class="kpi-l">Monthly Cost</div><div class="kpi-s">vs $2,600+ elsewhere</div></div>
-    <div class="kpi" style="border-left:3px solid var(--gold)"><div class="kpi-n" style="color:var(--gold)">12</div><div class="kpi-l">Build Cycles</div><div class="kpi-s">~100 files built</div></div>
-  </div>
-  <div class="agrid" style="margin-bottom:13px">
-    <div class="acard" style="border:1px solid rgba(34,197,94,.2)"><div class="adot"></div><div class="aname" style="color:var(--green)">SCOUT</div><div class="ascore" style="color:var(--green)">89</div><div class="anote">Finds new contracts 4× a day across all 50 states</div></div>
-    <div class="acard" style="border:1px solid rgba(56,189,248,.2)"><div class="adot"></div><div class="aname" style="color:var(--cyan)">JUDGE</div><div class="ascore" style="color:var(--cyan)">92</div><div class="anote">Scores every contract 0–100 so you see only the best</div></div>
-    <div class="acard" style="border:1px solid rgba(34,197,94,.2)"><div class="adot"></div><div class="aname" style="color:var(--green)">VAULT</div><div class="ascore" style="color:var(--green)">97</div><div class="anote">Confirms you're allowed to bid before you do</div></div>
-    <div class="acard" style="border:1px solid rgba(56,189,248,.2)"><div class="adot"></div><div class="aname" style="color:var(--cyan)">RECON</div><div class="ascore" style="color:var(--cyan)">93</div><div class="anote">Researches competitors and finds teaming partners</div></div>
-    <div class="acard" style="border:1px solid rgba(34,197,94,.2)"><div class="adot"></div><div class="aname" style="color:var(--green)">DRAFT</div><div class="ascore" style="color:var(--green)">96</div><div class="anote">Writes proposal documents you send to win contracts</div></div>
-    <div class="acard" style="border:1px solid rgba(201,162,39,.2)"><div class="adot" style="background:var(--gold);box-shadow:0 0 5px var(--gold)"></div><div class="aname" style="color:var(--gold)">BRANDY</div><div class="ascore" style="color:var(--gold)">92</div><div class="anote">Morning briefing every day at 6 AM</div></div>
-    <div class="acard" style="border:1px solid rgba(56,189,248,.2)"><div class="adot"></div><div class="aname" style="color:var(--cyan)">LEDGER</div><div class="ascore" style="color:var(--cyan)">91</div><div class="anote">Learns from wins and losses to improve future bids</div></div>
-    <div class="acard" style="border:1px solid rgba(34,197,94,.2)"><div class="adot"></div><div class="aname" style="color:var(--green)">BID ENG</div><div class="ascore" style="color:var(--green)">95</div><div class="anote">Calculates the right price for any job in any state</div></div>
-    <div class="acard" style="border:1px solid rgba(56,189,248,.2)"><div class="adot"></div><div class="aname" style="color:var(--cyan)">EXEC</div><div class="ascore" style="color:var(--cyan)">91</div><div class="anote">Tracks job costs and billing once a contract is won</div></div>
-  </div>
-  <div class="scgrid">
-    <div class="scc" style="border:1px solid rgba(34,197,94,.2)"><div class="sct"><span class="scn">Writing Proposals</span><span class="scv" style="color:var(--green)">99</span></div><div class="score-bar"><div style="height:100%;width:99%;background:var(--green)"></div></div><div class="scnote">Memos · 4-volume · DocuSign · auto-filled from history</div></div>
-    <div class="scc" style="border:1px solid rgba(34,197,94,.2)"><div class="sct"><span class="scn">Compliance Check</span><span class="scv" style="color:var(--green)">99</span></div><div class="score-bar"><div style="height:100%;width:99%;background:var(--green)"></div></div><div class="scnote">License gate · prevailing wage · cert tracking</div></div>
-    <div class="scc" style="border:1px solid rgba(56,189,248,.2)"><div class="sct"><span class="scn">Pricing Jobs</span><span class="scv" style="color:var(--cyan)">97</span></div><div class="score-bar"><div style="height:100%;width:97%;background:var(--cyan)"></div></div><div class="scnote">Bonding · mobilization cost · win probability</div></div>
-    <div class="scc" style="border:1px solid rgba(56,189,248,.2)"><div class="sct"><span class="scn">Finding Contracts</span><span class="scv" style="color:var(--cyan)">96</span></div><div class="score-bar"><div style="height:100%;width:96%;background:var(--cyan)"></div></div><div class="scnote">SAM.gov national · TX/FL/VA/GA portals · LaPAC</div></div>
-    <div class="scc" style="border:1px solid rgba(201,162,39,.2)"><div class="sct"><span class="scn">Business Strategy</span><span class="scv" style="color:var(--gold)">95</span></div><div class="score-bar"><div style="height:100%;width:95%;background:var(--gold)"></div></div><div class="scnote">51-state · HUBZone/8(a)/GSA roadmaps</div></div>
-    <div class="scc" style="border:1px solid rgba(245,158,11,.2)"><div class="sct"><span class="scn">Tracking Costs</span><span class="scv" style="color:var(--amber)">91</span></div><div class="score-bar"><div style="height:100%;width:91%;background:var(--amber)"></div></div><div class="scnote">Job costs · billing · cash flow · QuickBooks sync</div></div>
+<!-- ═══ SYSTEM ═══ -->
+<div class="tab" id="t-system">
+  <div style="font-size:16px;font-weight:700;margin-bottom:14px">⚙️ System · 9 Agents · Score 99/100 · $8–9/mo</div>
+  <div class="grid3" id="agents-grid"></div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card-section">
+      <div class="section-label" style="color:var(--gold)">COST TRACKER</div>
+      <div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t2)"><span>Anthropic (Claude AI)</span><span>$6.40 / $10.00</span></div><div class="bar" style="margin-top:3px"><div class="bar-fill" style="width:64%;background:var(--green)"></div></div></div>
+      <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t2)"><span>Fly.io (Brandi API)</span><span>$2.80 / $5.00</span></div><div class="bar" style="margin-top:3px"><div class="bar-fill" style="width:56%;background:var(--green)"></div></div></div>
+      <div style="font-size:11px;font-weight:700;color:var(--gold)">Total: $9.20/mo</div>
+      <div style="font-size:9px;color:var(--t3);margin-top:4px">vs $2,600+/mo for GovWin + Procore + P6</div>
+    </div>
+    <div class="card-section">
+      <div class="section-label" style="color:var(--cyan)">API HEALTH</div>
+      <div id="api-list"></div>
+    </div>
   </div>
 </div>
 
 </div><!-- /main -->
-</div><!-- /layout -->
-
-<div class="bot-nav">
-  <div class="bn-inner">
-    <button class="bn-btn active" id="bn-home" onclick="go('home')"><span class="bn-icon">🏠</span><span class="bn-lbl">Home</span></button>
-    <button class="bn-btn" id="bn-jobs" onclick="go('jobs')"><span class="bn-icon">🔍</span><span class="bn-lbl">Find Jobs</span></button>
-    <button class="bn-btn" id="bn-bids" onclick="go('bids')"><span class="bn-icon">📋</span><span class="bn-lbl">Bids</span></button>
-    <button class="bn-btn" id="bn-work" onclick="go('work')"><span class="bn-icon">🏗️</span><span class="bn-lbl">Work</span></button>
-    <button class="bn-btn" id="bn-cert" onclick="go('cert')"><span class="bn-icon">📜</span><span class="bn-lbl">Certify</span></button>
-    <button class="bn-btn" id="bn-todo" onclick="go('todo')"><span class="bn-icon">✅</span><span class="bn-lbl">To-Do</span></button>
-    <button class="bn-btn" id="bn-sys" onclick="go('sys')"><span class="bn-icon">⚙️</span><span class="bn-lbl">System</span></button>
-  </div>
-</div>
 
 <script>
-const TABS=['home','jobs','bids','work','cert','todo','sys'];
-function go(id){
-  TABS.forEach(t=>{
-    const el=document.getElementById('t-'+t); if(el) el.style.display=t===id?'':'none';
-    const nb=document.getElementById('nb-'+t); if(nb) nb.classList.toggle('active',t===id);
-    const bn=document.getElementById('bn-'+t); if(bn) bn.classList.toggle('active',t===id);
+/* ══ NAV ══ */
+const TABS = ['home','construction','supply','bids','active','compliance','intel','system'];
+function go(id) {
+  TABS.forEach(t => {
+    const el = document.getElementById('t-' + t);
+    if (el) el.classList.toggle('active', t === id);
   });
-  if(id==='jobs') renderSG();
+  document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+  event.target.closest('.sb-btn').classList.add('active');
 }
-function tick(){
-  const n=new Date(),p=x=>String(x).padStart(2,'0');
-  const D=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const el=document.getElementById('ltime');
-  if(el) el.textContent=D[n.getDay()]+' '+M[n.getMonth()]+' '+n.getDate()+' · '+p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds())+' CT';
+
+/* ══ CLOCK ══ */
+function tick() {
+  const n = new Date();
+  const D = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const pad = x => String(x).padStart(2, '0');
+  document.getElementById('clock').textContent = D[n.getDay()] + ' ' + M[n.getMonth()] + ' ' + n.getDate() + ' · ' + pad(n.getHours()) + ':' + pad(n.getMinutes()) + ':' + pad(n.getSeconds()) + ' CT';
 }
-tick();setInterval(tick,1000);
-function sw(id){['costs','bill','cash'].forEach(s=>{const e=document.getElementById('sw-'+s),b=document.getElementById('stb-'+s);if(e)e.style.display=s===id?'':'none';if(b)b.classList.toggle('a',s===id);})}
-const CC={
-  hub:`<div class="ibox" style="background:var(--adm);border:1px solid var(--abd);color:var(--amber)">⭐ <b>Step 1 takes 5 minutes.</b> $20B+ more in contracts if you qualify.</div><div class="cstage" style="border-color:var(--amber)"><div class="csnum" style="background:var(--adm);border-color:var(--amber);color:var(--amber)">1</div><div><div class="csn">Check if 70114 is in a HUBZone</div><div class="csa" style="color:var(--amber)">→ maps.certify.sba.gov/hubzone/map</div></div><span class="tag ta" style="flex-shrink:0;margin-left:auto">DO FIRST</span></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">2</div><div class="csn" style="color:var(--steel)">Confirm 35% of employees live in a HUBZone</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">3</div><div class="csn" style="color:var(--steel)">Gather documents (lease, tax returns, payroll)</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">4</div><div class="csn" style="color:var(--steel)">Submit at mycertifications.sba.gov</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">5</div><div class="csn" style="color:var(--steel)">Wait for SBA review (60–90 days)</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">6</div><div class="csn" style="color:var(--steel)">🎉 HUBZone active — renew annually</div></div>`,
-  '8a':`<div class="ibox" style="background:var(--cdm);border:1px solid var(--cbd);color:var(--cyan)">✓ <b>You're already eligible!</b> Next: collect 3 years of tax returns and write your story.</div><div class="cstage" style="border-color:var(--green)"><div class="csnum" style="background:var(--green);border-color:var(--green);color:#000">✓</div><div class="csn">Confirm eligibility (net worth under $850K)</div></div><div class="cstage" style="border-color:var(--cyan)"><div class="csnum" style="background:var(--cdm);border-color:var(--cyan);color:var(--cyan)">2</div><div><div class="csn">Collect 3 years of tax returns + SBA Form 413</div><div class="csa" style="color:var(--cyan)">→ DO THIS NEXT</div></div><span class="tag tc" style="flex-shrink:0;margin-left:auto">NEXT</span></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">3</div><div class="csn" style="color:var(--steel)">Write your personal business hardship story</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">4</div><div class="csn" style="color:var(--steel)">Submit full application (4–8 hours)</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">5</div><div class="csn" style="color:var(--steel)">SBA review (90–120 days)</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">6</div><div class="csn" style="color:var(--steel)">🎉 8(a) active — sole-source up to $4.5M</div></div>`,
-  gsa:`<div class="ibox" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.35);color:var(--violet)">💡 <b>Start HUBZone and 8(a) first.</b> GSA Schedule unlocks PRIME's $50B+ eBuy module automatically.</div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">1</div><div class="csn" style="color:var(--steel)">Identify the right GSA Schedule (03FAC)</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">2</div><div class="csn" style="color:var(--steel)">Gather 2 years of financials + price list</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">3</div><div class="csn" style="color:var(--steel)">Submit offer at eoffer.gsa.gov</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">4</div><div class="csn" style="color:var(--steel)">Negotiate pricing with GSA contracting officer</div></div><div class="cstage" style="border-color:var(--steel)"><div class="csnum" style="border-color:var(--steel);color:var(--steel)">5</div><div class="csn" style="color:var(--steel)">🎉 Schedule awarded — unlocks $50B+ eBuy</div></div>`
-};
-function sc2(id){['hub','8a','gsa'].forEach(c=>{const b=document.getElementById('cb-'+c);if(b){b.style.borderColor=c===id?'rgba(201,162,39,.5)':'rgba(139,150,176,.2)';b.style.background=c===id?'var(--gdim)':'var(--card)';}});const cc=document.getElementById('cert-content');if(cc)cc.innerHTML=CC[id]||'';}
-function toggleDone(el,color){el.classList.toggle('done');const box=el.querySelector('.chk');if(el.classList.contains('done')){box.textContent='✓';box.style.background='var(--'+color+')';box.style.borderColor='var(--'+color+')';box.style.color='#000';}else{box.textContent='';box.style.background='';box.style.color='var(--'+color+')';}}
-const STATES=[{c:'LA',n:'Louisiana',lic:true,noLic:false,opps:3,score:91,val:4800000,hp:true,region:'Gulf Coast',notes:'Home state · USACE MVN · VA VISN 16'},{c:'MS',n:'Mississippi',lic:false,noLic:false,opps:2,score:81,val:2400000,hp:false,region:'Gulf Coast',notes:'VA Biloxi · Air Force Keesler'},{c:'AL',n:'Alabama',lic:false,noLic:false,opps:1,score:74,val:1200000,hp:false,region:'Gulf Coast',notes:'Redstone Arsenal'},{c:'TX',n:'Texas',lic:true,noLic:true,opps:4,score:84,val:6800000,hp:true,region:'Gulf Coast',notes:'No GC license needed · Fort Hood · $7.1B fed spend'},{c:'FL',n:'Florida',lic:false,noLic:false,opps:3,score:79,val:3200000,hp:false,region:'South',notes:'MacDill AFB · NAS Jacksonville'},{c:'GA',n:'Georgia',lic:false,noLic:false,opps:2,score:77,val:2100000,hp:false,region:'South',notes:'Fort Benning · VA Augusta'},{c:'TN',n:'Tennessee',lic:false,noLic:false,opps:2,score:72,val:1800000,hp:false,region:'South',notes:'Arnold AFB'},{c:'NC',n:'N. Carolina',lic:false,noLic:false,opps:2,score:75,val:2400000,hp:false,region:'South',notes:'Fort Bragg · Camp Lejeune'},{c:'SC',n:'S. Carolina',lic:false,noLic:false,opps:1,score:72,val:1100000,hp:false,region:'South',notes:'Shaw AFB'},{c:'AR',n:'Arkansas',lic:false,noLic:false,opps:1,score:68,val:800000,hp:false,region:'South',notes:'Little Rock AFB'},{c:'OK',n:'Oklahoma',lic:false,noLic:false,opps:1,score:70,val:900000,hp:false,region:'South',notes:'Tinker AFB'},{c:'KY',n:'Kentucky',lic:false,noLic:false,opps:1,score:70,val:900000,hp:false,region:'South',notes:'Fort Knox'},{c:'VA',n:'Virginia',lic:false,noLic:false,opps:3,score:83,val:4100000,hp:false,region:'Mid-Atlantic',notes:'Pentagon · NAVFAC Mid-Atl'},{c:'DC',n:'Wash. DC',lic:false,noLic:false,opps:2,score:78,val:2800000,hp:false,region:'Mid-Atlantic',notes:'GSA PBS · DoD HQ'},{c:'MD',n:'Maryland',lic:false,noLic:false,opps:2,score:76,val:2300000,hp:false,region:'Mid-Atlantic',notes:'Andrews AFB'},{c:'PA',n:'Pennsylvania',lic:true,noLic:true,opps:2,score:81,val:2400000,hp:true,region:'Mid-Atlantic',notes:'No GC license needed · Carlisle Barracks'},{c:'WV',n:'W. Virginia',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Mid-Atlantic',notes:'Small market'},{c:'DE',n:'Delaware',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Mid-Atlantic',notes:'Dover AFB'},{c:'NJ',n:'New Jersey',lic:false,noLic:false,opps:1,score:68,val:900000,hp:false,region:'Mid-Atlantic',notes:'McGuire JB'},{c:'NY',n:'New York',lic:false,noLic:false,opps:1,score:65,val:800000,hp:false,region:'Mid-Atlantic',notes:'West Point'},{c:'OH',n:'Ohio',lic:true,noLic:true,opps:2,score:82,val:2600000,hp:true,region:'Midwest',notes:'No GC license needed · Wright-Pat AFB'},{c:'IN',n:'Indiana',lic:true,noLic:true,opps:1,score:78,val:1400000,hp:true,region:'Midwest',notes:'No GC license needed'},{c:'IL',n:'Illinois',lic:true,noLic:true,opps:2,score:80,val:2200000,hp:true,region:'Midwest',notes:'No GC license needed · Scott AFB'},{c:'MI',n:'Michigan',lic:false,noLic:false,opps:1,score:70,val:1000000,hp:false,region:'Midwest',notes:'Selfridge ANGB'},{c:'WI',n:'Wisconsin',lic:true,noLic:true,opps:1,score:75,val:1100000,hp:false,region:'Midwest',notes:'No GC license needed'},{c:'MN',n:'Minnesota',lic:false,noLic:false,opps:1,score:68,val:800000,hp:false,region:'Midwest',notes:'VA Minneapolis'},{c:'MO',n:'Missouri',lic:false,noLic:false,opps:1,score:72,val:1200000,hp:false,region:'Midwest',notes:'Whiteman AFB'},{c:'IA',n:'Iowa',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'Midwest',notes:'No GC license needed'},{c:'KS',n:'Kansas',lic:true,noLic:true,opps:1,score:74,val:900000,hp:false,region:'Midwest',notes:'Fort Riley'},{c:'NE',n:'Nebraska',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'Midwest',notes:'Offutt AFB'},{c:'SD',n:'S. Dakota',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'Midwest',notes:'Ellsworth AFB'},{c:'ND',n:'N. Dakota',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'Midwest',notes:'Minot AFB'},{c:'CO',n:'Colorado',lic:true,noLic:true,opps:2,score:83,val:2800000,hp:true,region:'Mountain',notes:'No GC license needed · Fort Carson'},{c:'AZ',n:'Arizona',lic:false,noLic:false,opps:1,score:74,val:1300000,hp:false,region:'Mountain',notes:'Luke AFB'},{c:'NM',n:'New Mexico',lic:false,noLic:false,opps:1,score:72,val:1100000,hp:false,region:'Mountain',notes:'Kirtland AFB'},{c:'UT',n:'Utah',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Mountain',notes:'Hill AFB'},{c:'NV',n:'Nevada',lic:false,noLic:false,opps:1,score:69,val:700000,hp:false,region:'Mountain',notes:'Nellis AFB'},{c:'ID',n:'Idaho',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Mountain',notes:'Mountain Home AFB'},{c:'MT',n:'Montana',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Mountain',notes:'Malmstrom AFB'},{c:'WY',n:'Wyoming',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'Mountain',notes:'No GC license needed'},{c:'CA',n:'California',lic:false,noLic:false,opps:2,score:74,val:2100000,hp:false,region:'Pacific',notes:'Major federal market'},{c:'OR',n:'Oregon',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Pacific',notes:'VA Portland'},{c:'WA',n:'Washington',lic:false,noLic:false,opps:1,score:70,val:900000,hp:false,region:'Pacific',notes:'JBLM · Bremerton NS'},{c:'MA',n:'Massachusetts',lic:false,noLic:false,opps:1,score:62,val:600000,hp:false,region:'New England',notes:'Hanscom AFB'},{c:'CT',n:'Connecticut',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'New England',notes:'Small market'},{c:'RI',n:'Rhode Island',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'New England',notes:'NAVSTA Newport'},{c:'NH',n:'New Hampshire',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'New England',notes:'No GC license needed'},{c:'VT',n:'Vermont',lic:true,noLic:true,opps:0,score:0,val:0,hp:false,region:'New England',notes:'No GC license needed'},{c:'ME',n:'Maine',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'New England',notes:'Portsmouth Naval Shipyard'},{c:'AK',n:'Alaska',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Remote',notes:'Extreme travel cost'},{c:'HI',n:'Hawaii',lic:false,noLic:false,opps:0,score:0,val:0,hp:false,region:'Remote',notes:'Extreme travel cost'}];
-const SOPPS={LA:[{t:'VA Clinic — Slidell',a:'VA VISN 16',v:'$2.4M',s:91,sa:'SDB'},{t:'West Bank Levee',a:'USACE MVN',v:'$6.8M',s:83,sa:'SB'},{t:'Leake Ave Grounds',a:'GSA PBS',v:'$680K',s:82,sa:'SDB'}],TX:[{t:'Camp Maxey Renovation',a:'USACE SWF',v:'$3.2M',s:74,sa:'SB'},{t:'Fort Hood Barracks Ph.3',a:'USACE SWF',v:'$2.4M',s:81,sa:'SB'},{t:'TAMUS HVAC Replacement',a:'TX DIR',v:'$1.15M',s:71,sa:'HUB'}],VA:[{t:'Hunter Holmes McGuire Roof',a:'VA VISN 6',v:'$2.1M',s:78,sa:'SB'},{t:'NAVFAC Mid-Atlantic Office',a:'NAVFAC',v:'$1.2M',s:75,sa:'SB'}],OH:[{t:'Wright-Patterson Lab Reno',a:'AFCEC',v:'$1.8M',s:82,sa:'SB'},{t:'VA Dayton CBOC',a:'VA VISN 10',v:'$800K',s:79,sa:'SDB'}],CO:[{t:'Fort Carson Barracks Ph.4',a:'USACE OAO',v:'$2.1M',s:83,sa:'SB'},{t:'Peterson SFB Upgrade',a:'AFCEC',v:'$700K',s:76,sa:'SB'}],PA:[{t:'Carlisle Barracks Admin',a:'USACE NAD',v:'$1.2M',s:81,sa:'SB'},{t:'VA Pittsburgh CBOC',a:'VA VISN 4',v:'$1.2M',s:78,sa:'SDB'}],IL:[{t:'Scott AFB Dormitory',a:'AFCEC',v:'$1.5M',s:80,sa:'SB'},{t:'VA Chicago West CBOC',a:'VA VISN 12',v:'$700K',s:76,sa:'SDB'}],IN:[{t:'Camp Atterbury Facility',a:'USACE',v:'$1.4M',s:78,sa:'SB'}]};
-let sgFilt='all',sgSel=null;
-function sfmt(v){return v>=1e6?'$'+(v/1e6).toFixed(1)+'M':v>=1e3?'$'+(v/1e3).toFixed(0)+'K':'—';}
-function sfilt(f){sgFilt=f;['all','hp','bid','gap','gulf'].forEach(x=>{const b=document.getElementById('sf-'+x);if(b){b.className=x===f?'tag tg':'tag ts';b.style.cursor='pointer';b.style.padding='4px 9px';b.style.fontSize='9px';}});renderSG();}
-function renderSG(){const wrap=document.getElementById('sg-wrap');if(!wrap)return;wrap.innerHTML='';const REGIONS=[...new Set(STATES.map(s=>s.region))];const RLBL={'Gulf Coast':'⭐ Gulf Coast','South':'South','Mid-Atlantic':'Mid-Atlantic','New England':'New England','Midwest':'Midwest','Mountain':'Mountain / Southwest','Pacific':'Pacific','Remote':'Remote'};REGIONS.forEach(region=>{let states=STATES.filter(s=>s.region===region);if(sgFilt==='hp')states=states.filter(s=>s.hp);else if(sgFilt==='bid')states=states.filter(s=>(s.lic||s.noLic)&&s.opps>0);else if(sgFilt==='gap')states=states.filter(s=>!s.lic&&!s.noLic&&s.opps>0);else if(sgFilt==='gulf')states=states.filter(s=>s.region==='Gulf Coast');if(!states.length)return;const rl=document.createElement('div');rl.className='reg-lbl';rl.textContent=RLBL[region]||region;wrap.appendChild(rl);const grid=document.createElement('div');grid.className='sgrid';states.forEach(s=>{const tile=document.createElement('div');const stc=s.hp?'var(--green)':(s.lic||s.noLic)&&s.opps>0?'var(--cyan)':s.opps>0?'var(--amber)':'var(--steel)';const sc3=s.score>=90?'var(--green)':s.score>=80?'var(--gold)':s.score>=70?'var(--amber)':s.score>0?'var(--red)':'var(--steel)';tile.className='stile'+(s.hp?' hp':(!s.lic&&!s.noLic&&s.opps>0?' gap':s.opps===0?' dark':''));if(sgSel===s.c)tile.classList.add('sel');tile.innerHTML=(s.hp?'<div class="hpb">HIGH POT</div>':(!s.lic&&!s.noLic&&s.opps>0?'<div class="lgb">LIC GAP</div>':''))+'<div class="sc2" style="color:'+stc+';opacity:'+(s.opps===0?0.45:1)+'">'+s.c+'</div><div class="sopp" style="color:'+(s.opps>0?sc3:'var(--steel)')+';opacity:'+(s.opps===0?0.45:1)+'">'+(s.opps>0?s.opps+' opp'+(s.opps>1?'s':''):'—')+'</div>'+(s.val>0?'<div class="sval">'+sfmt(s.val)+'</div>':'');tile.onclick=()=>selectState(s);grid.appendChild(tile);});wrap.appendChild(grid);});}
-function selectState(s){sgSel=s.c;renderSG();const panel=document.getElementById('sd-panel');if(!panel)return;const canBid=s.lic||s.noLic;const licTag=canBid?'<span class="tag tg">✓ '+(s.lic?'Licensed':'No License Needed')+'</span>':'<span class="tag ta">⚠ Needs License</span>';const hpTag=s.hp?'<span class="tag tg">⭐ HIGH POTENTIAL</span>':'';const opps=SOPPS[s.c]||[];const oppsHtml=opps.length?opps.map(o=>{const oc=o.s>=90?'var(--green)':o.s>=80?'var(--gold)':o.s>=70?'var(--amber)':'var(--red)';return'<div style="background:var(--chi);border-left:3px solid '+oc+';border-radius:var(--r);padding:8px 10px;margin-bottom:5px"><div style="display:flex;gap:5px;align-items:center;margin-bottom:3px"><span class="tag tv" style="font-size:7px">'+o.sa+'</span><span style="font-size:11px;font-weight:900;color:'+oc+';margin-left:auto">'+o.s+'</span></div><div style="font-size:10px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:2px">'+o.t+'</div><div style="font-size:8px;color:var(--steel)">'+o.a+' · <span style="color:var(--gold);font-weight:700">'+o.v+'</span></div></div>';}).join(''):'<div style="font-size:10px;color:var(--steel);padding:10px 0;text-align:center">No current opportunities.<br>SCOUT is monitoring.</div>';panel.innerHTML='<div class="card card-gold"><div style="font-size:22px;font-weight:900;color:var(--gold);letter-spacing:.1em;line-height:1">'+s.c+'</div><div style="font-size:10px;color:var(--steel);margin-top:2px;margin-bottom:9px">'+s.n+'</div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px">'+hpTag+licTag+'</div><div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--steel)">Opportunities</span><span style="font-size:9px;font-weight:700;color:var(--green)">'+s.opps+'</span></div><div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06)"><span style="font-size:9px;color:var(--steel)">Total Value</span><span style="font-size:9px;font-weight:700;color:var(--gold)">'+sfmt(s.val)+'</span></div><div style="display:flex;justify-content:space-between;padding:4px 0"><span style="font-size:9px;color:var(--steel)">Best Score</span><span style="font-size:9px;font-weight:700;color:var(--cyan)">'+(s.score||'—')+'</span></div><div style="font-size:8px;color:var(--steel);margin-top:7px;line-height:1.5">'+s.notes+'</div></div><div style="font-size:8px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:.1em;margin:5px 0 6px">OPPORTUNITIES</div>'+oppsHtml;}
+tick(); setInterval(tick, 1000);
+
+/* ══ HELPERS ══ */
+function recBadge(rec) {
+  const map = { 'STRONG BID': { bg: 'var(--greenDim)', c: 'var(--green)', i: '✅' }, 'BID': { bg: 'var(--cyanDim)', c: 'var(--cyan)', i: '✅' }, 'CONDITIONAL': { bg: 'var(--amberDim)', c: 'var(--amber)', i: '⚠️' }, 'NO BID': { bg: 'var(--redDim)', c: 'var(--red)', i: '❌' } };
+  const s = map[rec] || map['BID'];
+  return `<span class="badge" style="background:${s.bg};color:${s.c}">${s.i} ${rec}</span>`;
+}
+function scoreColor(s) { return s >= 85 ? 'var(--green)' : s >= 70 ? 'var(--gold)' : s >= 55 ? 'var(--amber)' : 'var(--red)'; }
+
+/* ══ RENDER CONSTRUCTION ══ */
+const CONSTR = [
+  { t: 'VA Slidell Outpatient Clinic Renovation', a: 'VA', n: '236220', sa: 'SDB', v: 2400000, s: 91, r: 'STRONG BID', d: 22 },
+  { t: 'NAVFAC Federal City Electrical + HVAC', a: 'NAVFAC', n: '238210', sa: 'SB', v: 1400000, s: 88, r: 'STRONG BID', d: 18 },
+  { t: 'GSA Leake Ave Landscaping & Grounds', a: 'GSA', n: '561730', sa: 'SDB', v: 680000, s: 86, r: 'BID', d: 26 },
+  { t: 'Keesler AFB Housing Renovation (12 units)', a: 'Air Force', n: '236116', sa: 'SB', v: 3200000, s: 74, r: 'CONDITIONAL', d: 28 },
+  { t: 'NPS Barataria Boardwalk Restoration', a: 'Dept of Interior', n: '237990', sa: 'Full & Open', v: 890000, s: 58, r: 'NO BID', d: 15 },
+];
+document.getElementById('constr-list').innerHTML = CONSTR.map(o => `
+  <div class="opp">
+    <div><div class="opp-title">${o.t}</div><div class="opp-meta">${o.a} · ${o.n} · <span class="badge" style="background:${o.sa==='SDB'?'var(--goldDim)':'var(--cyanDim)'};color:${o.sa==='SDB'?'var(--gold)':'var(--cyan)'};border:1px solid ${o.sa==='SDB'?'var(--goldBd)':'var(--cyanBd)'}">${o.sa}</span></div></div>
+    <div class="opp-val">$${(o.v/1000).toFixed(0)}K</div>
+    <div><span class="score" style="color:${scoreColor(o.s)}">${o.s}</span><span class="score-lbl">PRIME</span></div>
+    <div>${recBadge(o.r)}</div>
+    <div class="opp-dl" style="color:${o.d<=10?'var(--red)':'var(--t3)'}">🕐 ${o.d}d</div>
+  </div>`).join('');
+
+/* ══ RENDER SUPPLY ══ */
+const SUPPLY = [
+  { t: 'Diesel Fuel Delivery — NAS JRB New Orleans', a: 'DLA', c: 'fuel', sa: 'SB', v: 340000, s: 94, r: 'STRONG BID', d: 30, rc: 'Annual IDIQ', src: 'DIBBS' },
+  { t: 'Janitorial Paper Products — VA Medical Center', a: 'VA', c: 'janitorial', sa: 'SDB', v: 87000, s: 91, r: 'STRONG BID', d: 21, rc: 'Quarterly BPA', src: 'SAM' },
+  { t: 'PPE Gloves & Masks — USACE New Orleans', a: 'USACE', c: 'ppe', sa: 'SB', v: 24000, s: 88, r: 'BID', d: 9, rc: 'As-Needed', src: 'DIBBS' },
+  { t: 'Office Supplies — Hale Boggs Federal Bldg', a: 'GSA', c: 'office', sa: 'SDB', v: 18500, s: 82, r: 'BID', d: 35, rc: 'Monthly PO', src: 'SAM' },
+  { t: 'Break Room Supplies — Ft. Polk', a: 'Army', c: 'food', sa: 'SB', v: 12000, s: 76, r: 'CONDITIONAL', d: 14, rc: 'Quarterly', src: 'SAM' },
+];
+document.getElementById('supply-list').innerHTML = SUPPLY.map(o => `
+  <div class="opp">
+    <div><div class="opp-title">${o.t}</div><div class="opp-meta">${o.a} · ${o.c} · <span class="badge" style="background:${o.sa==='SDB'?'var(--goldDim)':'var(--cyanDim)'};color:${o.sa==='SDB'?'var(--gold)':'var(--cyan)'};border:1px solid ${o.sa==='SDB'?'var(--goldBd)':'var(--cyanBd)'}">${o.sa}</span> ${o.src==='DIBBS'?'<span class="badge" style="background:var(--amberDim);color:var(--amber);border:1px solid rgba(245,158,11,.25)">DIBBS</span>':''} <span class="badge" style="background:var(--violetDim);color:var(--violet);border:1px solid rgba(167,139,250,.25)">${o.rc}</span></div></div>
+    <div class="opp-val">$${(o.v/1000).toFixed(0)}K</div>
+    <div><span class="score" style="color:${scoreColor(o.s)}">${o.s}</span><span class="score-lbl">ACQ</span></div>
+    <div>${recBadge(o.r)}</div>
+    <div class="opp-dl" style="color:${o.d<=10?'var(--red)':'var(--t3)'}">🕐 ${o.d}d</div>
+  </div>`).join('');
+
+/* ══ RENDER BIDS ══ */
+const BIDS = [
+  { t: 'VA Baton Rouge Paint Contract', v: 'construction', st: 'won', amt: 145000, sub: 'Mar 28' },
+  { t: 'GSA Leake Ave Landscaping', v: 'construction', st: 'submitted', amt: 680000, sub: 'Apr 19' },
+  { t: 'Diesel Fuel — NAS JRB', v: 'supply', st: 'draft', amt: 340000, sub: '—' },
+  { t: 'Janitorial — VA Medical Center', v: 'supply', st: 'submitted', amt: 87000, sub: 'Apr 22' },
+];
+const stColors = { won: 'var(--green)', submitted: 'var(--cyan)', draft: 'var(--gold)', lost: 'var(--red)' };
+const stBg = { won: 'var(--greenDim)', submitted: 'var(--cyanDim)', draft: 'var(--goldDim)', lost: 'var(--redDim)' };
+document.getElementById('bids-list').innerHTML = BIDS.map(b => `
+  <div class="bid-row">
+    <span class="badge" style="background:${b.v==='supply'?'var(--cyanDim)':'var(--greenDim)'};color:${b.v==='supply'?'var(--cyan)':'var(--green)'}">${b.v==='supply'?'SUPPLY':'CONSTR'}</span>
+    <div style="flex:1"><div style="font-size:12px;font-weight:500">${b.t}</div><div style="font-size:10px;color:var(--t3);margin-top:2px">Submitted: ${b.sub} · $${(b.amt/1000).toFixed(0)}K</div></div>
+    <span class="badge" style="background:${stBg[b.st]};color:${stColors[b.st]}">${b.st.toUpperCase()}</span>
+  </div>`).join('');
+
+/* ══ RENDER COMPLIANCE ══ */
+const COMP = [
+  { n: 'SAM.gov Registration', s: 'Active', e: 'Jan 2027', c: 'var(--green)', d: 270 },
+  { n: 'Small Disadvantaged Business (SDB)', s: 'Active', e: 'Self-cert', c: 'var(--green)', d: null },
+  { n: 'Minority Business Enterprise (MBE)', s: 'Active', e: 'Dec 2026', c: 'var(--green)', d: 240 },
+  { n: 'General Liability Insurance', s: 'Renewing', e: 'Jun 2026', c: 'var(--amber)', d: 52 },
+  { n: 'Louisiana Contractor License', s: 'Active', e: 'Mar 2027', c: 'var(--green)', d: 330 },
+  { n: 'Bonding Capacity', s: '$1.5M / $3M', e: 'Verified Apr 2026', c: 'var(--cyan)', d: null },
+  { n: 'HUBZone Certification', s: 'Not Applied', e: '—', c: 'var(--red)', d: null },
+  { n: '8(a) Certification', s: 'Not Applied', e: '—', c: 'var(--red)', d: null },
+  { n: 'Safety Record (TRIR)', s: '0.00', e: 'Rolling 3yr', c: 'var(--green)', d: null },
+];
+document.getElementById('comp-list').innerHTML = COMP.map(item => `
+  <div class="comp-row">
+    <span class="comp-dot" style="background:${item.c};box-shadow:0 0 6px ${item.c}"></span>
+    <span class="comp-name">${item.n}</span>
+    <span class="badge" style="background:${item.c}18;color:${item.c}">${item.s}</span>
+    <span class="comp-exp" style="color:${item.d&&item.d<60?'var(--amber)':'var(--t3)'}">${item.e}${item.d&&item.d<90?' ('+item.d+'d)':''}</span>
+  </div>`).join('');
+
+/* ══ RENDER AGENTS ══ */
+const AGS = [
+  { n: 'BRANDI', r: 'CEO / Briefer', s: 92, st: 'active', c: 'var(--gold)', lr: '6:00 AM' },
+  { n: 'SCOUT', r: 'Job Finder', s: 96, st: 'active', c: 'var(--green)', lr: '6:15 AM' },
+  { n: 'JUDGE', r: 'Scorer', s: 92, st: 'active', c: 'var(--cyan)', lr: '6:16 AM' },
+  { n: 'VAULT', r: 'Compliance', s: 99, st: 'active', c: 'var(--green)', lr: '5:30 AM' },
+  { n: 'RECON', r: 'Intel Agent', s: 93, st: 'active', c: 'var(--cyan)', lr: '11:00 AM' },
+  { n: 'DRAFT', r: 'Proposal Writer', s: 99, st: 'idle', c: 'var(--green)', lr: 'On-demand' },
+  { n: 'BID ENG', r: 'Pricer', s: 97, st: 'idle', c: 'var(--cyan)', lr: 'On-demand' },
+  { n: 'LEDGER', r: 'Learner', s: 91, st: 'active', c: 'var(--cyan)', lr: 'Sun 10 PM' },
+  { n: 'EXEC', r: 'Project Tracker', s: 96, st: 'active', c: 'var(--green)', lr: 'Mon 6 AM' },
+];
+document.getElementById('agents-grid').innerHTML = AGS.map(a => `
+  <div class="agent-card" style="border:1px solid ${a.c}22">
+    <div class="agent-hdr">
+      <span class="agent-dot" style="background:${a.st==='active'?a.c:'var(--t3)'};box-shadow:${a.st==='active'?'0 0 6px '+a.c:'none'}"></span>
+      <span class="agent-name" style="color:${a.c}">${a.n}</span>
+      <span class="agent-score" style="color:${a.c}">${a.s}</span>
+    </div>
+    <div style="font-size:10px;color:var(--t2)">${a.r}</div>
+    <div style="font-size:9px;color:var(--t3);margin-top:4px">Last: ${a.lr}</div>
+  </div>`).join('');
+
+/* ══ RENDER API HEALTH ══ */
+const APIS = [
+  { n: 'SAM.gov', s: 'OK', u: '38%' },
+  { n: 'USAspending', s: 'OK', u: '∞' },
+  { n: 'DLA DIBBS', s: 'OK', u: '∞' },
+  { n: 'Anthropic', s: 'OK', u: '64%' },
+  { n: 'SendGrid', s: 'OK', u: '2%' },
+];
+document.getElementById('api-list').innerHTML = APIS.map((a, i) => `
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;${i<4?'border-bottom:1px solid var(--bd)':''}">
+    <span style="font-size:10px;color:var(--t2)">${a.n}</span>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span style="font-size:9px;color:var(--t3)">${a.u} used</span>
+      <span style="width:6px;height:6px;border-radius:99px;background:var(--green)"></span>
+    </div>
+  </div>`).join('');
 </script>
 </body>
 </html>
